@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VisionPersonalTrainingProject.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="VisionPersonalTrainingProject_VOSWebService_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://vosweblink.visionpt.com.au/service.asmx</Value>
+    </Setting>
+    <Setting Name="VisionPersonalTrainingProject_com_worldmanager_visionpt_playground_WmSoapServiceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://visionpt-playground.worldmanager.com/soap/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

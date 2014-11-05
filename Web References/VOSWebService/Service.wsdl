@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserRoleResult" type="tns:UserRole" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserRole">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StudioID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Studio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LevelID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+      <s:complexType name="AuthenticationHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetUserMembers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iUser" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserMembersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserMembersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserMemberEmails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iUser" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserMemberEmailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserMemberEmailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberLoginResult" type="tns:MemberLogin" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberLogin">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Login" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Member" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StudioID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Studio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CVUserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CVPassword" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrainerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMemberLoginAvailability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cLogin" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberLoginAvailabilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberLoginAvailabilityResult" type="tns:MemberLoginAvailability" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberLoginAvailability">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LoginAvailable" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMemberGoals">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMemberNo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberGoalsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberGoalsResult" type="tns:MemberGoals" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberGoals">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Postcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DaytimePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MyStudio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MyStudioID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MyTrainer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MyTrainerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MyTrainerContact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MyTrainerEmail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CHO" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PTN" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="FAT" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Goal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Program" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GSDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NextGS" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="GoalWt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NowWt" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartWt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProgressWt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CWRatio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cardio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Weights" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardioLM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardioHard" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accelerator" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WeeklyWt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WeeklyGoal" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMemberPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cUserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberPasswordResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMemberNo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberTrainingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberWeightHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMemberNo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberWeightHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberWeightHistoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberPTSessionHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMemberNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPTType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPTDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberPTSessionHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberPTSessionHistoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberPTSessionDates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMemberNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPTType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberPTSessionDatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberPTSessionDatesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMemberPasswordAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMemberNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPasswordOld" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPasswordNew" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMemberPasswordAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateMemberPasswordAccountResult" type="tns:MemberPassword" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPasswordNew" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberPassword">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Update" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SubmitEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oEvent" type="tns:stEventUpdate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="stEventUpdate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegisterID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StudioID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Category" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Information" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Place" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MeetingPlace" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Source" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SubmitEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitEventResult" type="tns:stEventUpdate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitEventRegister">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oEvent" type="tns:stEventUpdate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitEventRegisterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitEventRegisterResult" type="tns:stEventUpdate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitEnquiry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oEnquiry" type="tns:stEnquiryUpdate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="stEnquiryUpdate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EnquiryID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StudioID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DaytimePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Source" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LightBoxID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SubmitEnquiryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitEnquiryResult" type="tns:stEnquiryUpdate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWhatsOn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iStudioID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iWhatsOn" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWhatsOnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWhatsOnResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPartners">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iStudioID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPartnersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPartnersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserRole" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRoleAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMembersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserMembers" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMembersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMembersAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMemberEmailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserMemberEmails" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMemberEmailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserMemberEmailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMemberEmailsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberLogin" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberLoginAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberLoginAvailabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberLoginAvailability" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberLoginAvailabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberLoginAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberLoginAvailabilityAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberGoalsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberGoals" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberGoalsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberGoalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberGoalsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberPassword" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPasswordAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberTraining" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberTrainingAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberWeightHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberWeightHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberWeightHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberWeightHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberWeightHistoryAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPTSessionHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberPTSessionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPTSessionHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberPTSessionHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPTSessionHistoryAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPTSessionDatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberPTSessionDates" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPTSessionDatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberPTSessionDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberPTSessionDatesAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMemberPasswordAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMemberPasswordAccount" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMemberPasswordAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMemberPasswordAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMemberPasswordAccountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEventSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitEvent" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEventSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEventAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEventRegisterSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitEventRegister" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEventRegisterSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitEventRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEventRegisterAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEnquirySoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitEnquiry" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEnquirySoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitEnquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEnquiryAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetWhatsOnSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWhatsOn" />
+  </wsdl:message>
+  <wsdl:message name="GetWhatsOnSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWhatsOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWhatsOnAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPartnersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPartners" />
+  </wsdl:message>
+  <wsdl:message name="GetPartnersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPartnersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPartnersAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRole">
+      <wsdl:input message="tns:GetUserRoleSoapIn" />
+      <wsdl:output message="tns:GetUserRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMembers">
+      <wsdl:input message="tns:GetUserMembersSoapIn" />
+      <wsdl:output message="tns:GetUserMembersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMemberEmails">
+      <wsdl:input message="tns:GetUserMemberEmailsSoapIn" />
+      <wsdl:output message="tns:GetUserMemberEmailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLogin">
+      <wsdl:input message="tns:GetMemberLoginSoapIn" />
+      <wsdl:output message="tns:GetMemberLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLoginAvailability">
+      <wsdl:input message="tns:GetMemberLoginAvailabilitySoapIn" />
+      <wsdl:output message="tns:GetMemberLoginAvailabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberGoals">
+      <wsdl:input message="tns:GetMemberGoalsSoapIn" />
+      <wsdl:output message="tns:GetMemberGoalsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPassword">
+      <wsdl:input message="tns:GetMemberPasswordSoapIn" />
+      <wsdl:output message="tns:GetMemberPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberTraining">
+      <wsdl:input message="tns:GetMemberTrainingSoapIn" />
+      <wsdl:output message="tns:GetMemberTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberWeightHistory">
+      <wsdl:input message="tns:GetMemberWeightHistorySoapIn" />
+      <wsdl:output message="tns:GetMemberWeightHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPTSessionHistory">
+      <wsdl:input message="tns:GetMemberPTSessionHistorySoapIn" />
+      <wsdl:output message="tns:GetMemberPTSessionHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPTSessionDates">
+      <wsdl:input message="tns:GetMemberPTSessionDatesSoapIn" />
+      <wsdl:output message="tns:GetMemberPTSessionDatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberPasswordAccount">
+      <wsdl:input message="tns:UpdateMemberPasswordAccountSoapIn" />
+      <wsdl:output message="tns:UpdateMemberPasswordAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEvent">
+      <wsdl:input message="tns:SubmitEventSoapIn" />
+      <wsdl:output message="tns:SubmitEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEventRegister">
+      <wsdl:input message="tns:SubmitEventRegisterSoapIn" />
+      <wsdl:output message="tns:SubmitEventRegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEnquiry">
+      <wsdl:input message="tns:SubmitEnquirySoapIn" />
+      <wsdl:output message="tns:SubmitEnquirySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWhatsOn">
+      <wsdl:input message="tns:GetWhatsOnSoapIn" />
+      <wsdl:output message="tns:GetWhatsOnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPartners">
+      <wsdl:input message="tns:GetPartnersSoapIn" />
+      <wsdl:output message="tns:GetPartnersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRole">
+      <soap:operation soapAction="http://tempuri.org/GetUserRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserRoleAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMembers">
+      <soap:operation soapAction="http://tempuri.org/GetUserMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserMembersAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMemberEmails">
+      <soap:operation soapAction="http://tempuri.org/GetUserMemberEmails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserMemberEmailsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLogin">
+      <soap:operation soapAction="http://tempuri.org/GetMemberLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberLoginAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLoginAvailability">
+      <soap:operation soapAction="http://tempuri.org/GetMemberLoginAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberLoginAvailabilityAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberGoals">
+      <soap:operation soapAction="http://tempuri.org/GetMemberGoals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberGoalsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPassword">
+      <soap:operation soapAction="http://tempuri.org/GetMemberPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberPasswordAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberTraining">
+      <soap:operation soapAction="http://tempuri.org/GetMemberTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberTrainingAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberWeightHistory">
+      <soap:operation soapAction="http://tempuri.org/GetMemberWeightHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberWeightHistoryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPTSessionHistory">
+      <soap:operation soapAction="http://tempuri.org/GetMemberPTSessionHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberPTSessionHistoryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPTSessionDates">
+      <soap:operation soapAction="http://tempuri.org/GetMemberPTSessionDates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMemberPTSessionDatesAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberPasswordAccount">
+      <soap:operation soapAction="http://tempuri.org/UpdateMemberPasswordAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateMemberPasswordAccountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEvent">
+      <soap:operation soapAction="http://tempuri.org/SubmitEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SubmitEventAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEventRegister">
+      <soap:operation soapAction="http://tempuri.org/SubmitEventRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SubmitEventRegisterAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEnquiry">
+      <soap:operation soapAction="http://tempuri.org/SubmitEnquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SubmitEnquiryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWhatsOn">
+      <soap:operation soapAction="http://tempuri.org/GetWhatsOn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetWhatsOnAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPartners">
+      <soap:operation soapAction="http://tempuri.org/GetPartners" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPartnersAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRole">
+      <soap12:operation soapAction="http://tempuri.org/GetUserRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserRoleAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMembers">
+      <soap12:operation soapAction="http://tempuri.org/GetUserMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserMembersAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMemberEmails">
+      <soap12:operation soapAction="http://tempuri.org/GetUserMemberEmails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserMemberEmailsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLogin">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberLoginAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLoginAvailability">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberLoginAvailability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberLoginAvailabilityAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberGoals">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberGoals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberGoalsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPassword">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberPasswordAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberTraining">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberTrainingAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberWeightHistory">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberWeightHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberWeightHistoryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPTSessionHistory">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberPTSessionHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberPTSessionHistoryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberPTSessionDates">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberPTSessionDates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMemberPTSessionDatesAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberPasswordAccount">
+      <soap12:operation soapAction="http://tempuri.org/UpdateMemberPasswordAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateMemberPasswordAccountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEvent">
+      <soap12:operation soapAction="http://tempuri.org/SubmitEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SubmitEventAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEventRegister">
+      <soap12:operation soapAction="http://tempuri.org/SubmitEventRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SubmitEventRegisterAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEnquiry">
+      <soap12:operation soapAction="http://tempuri.org/SubmitEnquiry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SubmitEnquiryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWhatsOn">
+      <soap12:operation soapAction="http://tempuri.org/GetWhatsOn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetWhatsOnAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPartners">
+      <soap12:operation soapAction="http://tempuri.org/GetPartners" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPartnersAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://vosweblink.visionpt.com.au/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://vosweblink.visionpt.com.au/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

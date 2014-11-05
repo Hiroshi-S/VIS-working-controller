@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="VOS_QA_NEW" Class="VOSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VHQ-D-W7P-001;Initial Catalog=VOS_QA_NEW;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="VOSConnection" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.VSP_VOSWS_GetMemberGoals" Method="VSP_VOSWS_GetMemberGoals">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="VSP_VOSWS_GetMemberGoalsResult">
+      <Column Name="MemberNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StreetAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Postcode" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="DaytimePhone" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MyStudio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MyTrainer" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="CHOsdfsdf" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PTN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Goal" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CWRatio" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CardioTotal" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CardioLM" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CardioHard" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Weights" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="GSDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NextGS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GoalWt" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="NowWt" Type="System.String" DbType="VarChar(257) NOT NULL" CanBeNull="false" />
+      <Column Name="StartWt" Type="System.String" DbType="VarChar(257) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgressWt" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

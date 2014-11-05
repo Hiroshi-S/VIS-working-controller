@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FranchiseOwner.ascx.cs" Inherits="VisionPersonalTrainingProject.usercontrols.studiopages.StudioOwner" %>
+<asp:Literal ID="Literal1" runat="server"></asp:Literal>

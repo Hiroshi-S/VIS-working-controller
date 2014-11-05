@@ -1,0 +1,1470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90267363-E9C2-41E0-BE3D-11C85D26A57D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VisionPersonalTrainingProject</RootNamespace>
+    <AssemblyName>VisionPersonalTrainingProject</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AsyncCtpLibrary">
+      <HintPath>..\..\..\_BACKUPS_\TESS_Captcha\ExternalControls\ExternalClubVisionProject\ExternalClubVisionProject\bin\AsyncCtpLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="BasicFrame.WebControls.BasicDatePicker">
+      <HintPath>..\..\..\..\Users\harrisg\Downloads\BasicDatePicker1_4_2\1_4_1\BasicFrame.WebControls.BasicDatePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="businesslogic, Version=1.0.4086.28097, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\businesslogic.dll</HintPath>
+    </Reference>
+    <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\cms.dll</HintPath>
+    </Reference>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.2.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="ExternalClubVisionProject">
+      <HintPath>..\..\..\ExternalClubVisionProject\ExternalClubVisionProject\bin\ExternalClubVisionProject.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\SDK_Binaries (1)\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Web, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\SDK_Binaries (1)\Facebook.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Winforms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\SDK_Binaries (1)\Facebook.Winforms.dll</HintPath>
+    </Reference>
+    <Reference Include="FiftyOne.Foundation">
+      <HintPath>packages\51Degrees.mobi.2.1.18.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="interfaces, Version=1.0.4388.21791, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="MangoChat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="OptionDropDownList">
+      <HintPath>..\..\External\ExternalClubVisionProject\ExternalClubVisionProject\bin\OptionDropDownList.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha">
+      <HintPath>..\..\..\Downloads\recaptcha-dotnet-1.0.5.0-binary\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha.Web">
+      <HintPath>..\..\..\_BACKUPS_\TESS_Captcha\ExternalControls\ExternalClubVisionProject\ExternalClubVisionProject\bin\Recaptcha.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="uComponents.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\uComponents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco, Version=1.0.4090.38017, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.providers">
+      <HintPath>..\..\svn\VisionPT\SVPT0018-Website\trunk\bin\umbraco.providers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="default.aspx" />
+    <Content Include="scripts\tinymce\license.txt" />
+    <Content Include="scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\css\dialog.css" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\buttons.png" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\icons.gif" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\items.gif" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\menu_arrow.gif" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\menu_check.gif" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\progress.gif" />
+    <Content Include="scripts\tinymce\plugins\compat3x\img\tabs.gif" />
+    <Content Include="scripts\tinymce\plugins\compat3x\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\utils\editable_selects.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\utils\form_utils.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\utils\mctabs.js" />
+    <Content Include="scripts\tinymce\plugins\compat3x\utils\validate.js" />
+    <Content Include="scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\example\dialog.html" />
+    <Content Include="scripts\tinymce\plugins\example\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\example_dependency\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\layer\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\paste\classes\Clipboard.js" />
+    <Content Include="scripts\tinymce\plugins\paste\classes\Plugin.js" />
+    <Content Include="scripts\tinymce\plugins\paste\classes\Quirks.js" />
+    <Content Include="scripts\tinymce\plugins\paste\classes\Utils.js" />
+    <Content Include="scripts\tinymce\plugins\paste\classes\WordFilter.js" />
+    <Content Include="scripts\tinymce\plugins\paste\plugin.dev.js" />
+    <Content Include="scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\spellchecker\classes\DomTextMatcher.js" />
+    <Content Include="scripts\tinymce\plugins\spellchecker\classes\Plugin.js" />
+    <Content Include="scripts\tinymce\plugins\spellchecker\plugin.dev.js" />
+    <Content Include="scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\table\classes\CellSelection.js" />
+    <Content Include="scripts\tinymce\plugins\table\classes\Dialogs.js" />
+    <Content Include="scripts\tinymce\plugins\table\classes\Plugin.js" />
+    <Content Include="scripts\tinymce\plugins\table\classes\Quirks.js" />
+    <Content Include="scripts\tinymce\plugins\table\classes\TableGrid.js" />
+    <Content Include="scripts\tinymce\plugins\table\plugin.dev.js" />
+    <Content Include="scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\address.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\article.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\aside.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\blockquote.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\div.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\dl.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\figure.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\h1.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\h2.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\h3.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\h4.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\h5.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\h6.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\hgroup.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\ol.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\p.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\pre.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\section.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\img\ul.gif" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="scripts\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="scripts\tinymce\tinymce.js" />
+    <Content Include="scripts\tinymce\tinymce.min.js" />
+    <Content Include="usercontrols\clubvision\ClientsLoginForTrainer.ascx" />
+    <Content Include="usercontrols\clubvision\InternalCVChat.ascx" />
+    <Content Include="usercontrols\clubvision\MealPictureEdit.ascx" />
+    <Content Include="usercontrols\clubvision\DailyMenusView.ascx" />
+    <Content Include="usercontrols\clubvision\FoodDiary.ascx" />
+    <Content Include="usercontrols\clubvision\ForumsView.ascx" />
+    <Content Include="usercontrols\clubvision\Login.ascx" />
+    <Content Include="usercontrols\clubvision\Menus.ascx" />
+    <Content Include="usercontrols\general\BP2for10.ascx" />
+    <Content Include="usercontrols\general\MetaTagGenerator.ascx" />
+    <Content Include="usercontrols\clubvision\MyExerciseTab.ascx" />
+    <Content Include="usercontrols\clubvision\MyJourney_MyProgress.ascx" />
+    <Content Include="usercontrols\clubvision\ProfileEdit.ascx" />
+    <Content Include="usercontrols\clubvision\ProfilePasswordEdit.ascx" />
+    <Content Include="usercontrols\clubvision\ProfilePictureEdit.ascx" />
+    <Content Include="usercontrols\clubvision\ProfileTab.ascx" />
+    <Content Include="usercontrols\clubvision\ProgressAndGoal.ascx" />
+    <Content Include="usercontrols\clubvision\ProgressGraph.ascx" />
+    <Content Include="usercontrols\clubvision\ReadySetGoQuestionnaire.ascx" />
+    <Content Include="usercontrols\clubvision\ReferralPromo.ascx" />
+    <Content Include="usercontrols\clubvision\RightPanel.ascx" />
+    <Content Include="usercontrols\clubvision\ShareDailyPlan.ascx" />
+    <Content Include="usercontrols\clubvision\Tools_EmotionTracker.ascx" />
+    <Content Include="usercontrols\clubvision\Tools_EnergyCalculator.ascx" />
+    <Content Include="usercontrols\clubvision\TrainerRedirection.ascx" />
+    <Content Include="usercontrols\clubvision\TrainingDiaryScreen.ascx" />
+    <Content Include="usercontrols\clubvision\VisionTV.ascx" />
+    <Content Include="usercontrols\clubvision\WhatsNewView.ascx" />
+    <Content Include="usercontrols\clubvision\WhatsOnTabs.ascx" />
+    <Content Include="usercontrols\clubvision\WhatsOnView.ascx" />
+    <Content Include="usercontrols\elements\FindLocalStudioElement.ascx" />
+    <Content Include="usercontrols\elements\FindLocalStudioFooter.ascx" />
+    <Content Include="usercontrols\elements\NewsletterSubscribe.ascx" />
+    <Content Include="usercontrols\externalclubvision\BusinessPlaza.ascx" />
+    <Content Include="usercontrols\externalclubvision\EditScreensPageLoad.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\BodyType.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\EatingPlanner.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\NewTrainingPlan.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\EditProfilePassword.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\LifeStyleScreen.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\Measurements.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\MyDetails.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\MyGoals.ascx" />
+    <Content Include="usercontrols\externalclubvision\initialscreens\TrainingPlan.ascx" />
+    <Content Include="usercontrols\externalclubvision\MyDetailsProfileTab.ascx" />
+    <Content Include="usercontrols\externalclubvision\MyEatingPlanTab.ascx" />
+    <Content Include="usercontrols\externalclubvision\MyJouneyTab.ascx" />
+    <Content Include="usercontrols\externalclubvision\MyMeasurementsTabs.ascx" />
+    <Content Include="usercontrols\externalclubvision\PasswordPictureEditTab.ascx" />
+    <Content Include="usercontrols\externalclubvision\ProfileEditMenu.ascx" />
+    <Content Include="usercontrols\externalclubvision\ProfileView.ascx" />
+    <Content Include="usercontrols\externalclubvision\Registration.ascx" />
+    <Content Include="usercontrols\externalclubvision\ResendConfirmEmail.ascx" />
+    <Content Include="usercontrols\externalclubvision\WhatsOnEvents.ascx" />
+    <Content Include="usercontrols\general\DailyInspiration.ascx" />
+    <Content Include="usercontrols\general\FranchiseCompetition.ascx" />
+    <Content Include="usercontrols\general\IpnHandler.ascx" />
+    <Content Include="usercontrols\general\IpnSandboxHandler.ascx" />
+    <Content Include="usercontrols\general\MarketingPage_BlueSection.ascx" />
+    <Content Include="usercontrols\general\MonthlyCampaign.ascx" />
+    <Content Include="usercontrols\general\NewsletterSubscriber.ascx" />
+    <Content Include="usercontrols\general\QuickLinks.ascx" />
+    <Content Include="usercontrols\general\ReportingPortal.ascx" />
+    <Content Include="usercontrols\general\RubyRadar.ascx" />
+    <Content Include="usercontrols\general\StarshotsBday.ascx" />
+    <Content Include="usercontrols\lightboxes\AddOwnFoodLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\BookConsultationLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\CopySharePlanLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\EbookDownloader.ascx" />
+    <Content Include="usercontrols\lightboxes\EnquiryLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\ErrorPopup.ascx" />
+    <Content Include="usercontrols\lightboxes\EventRegister.ascx" />
+    <Content Include="usercontrols\lightboxes\JoinTheTeamLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\BookShoppingTourOrSeminarLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\LandingPageInfoLightbox.ascx" />
+    <Content Include="usercontrols\lightboxes\NewGoalMeasurementsLightBox.ascx" />
+    <Content Include="usercontrols\lightboxes\TrainerClientsListLightbox.ascx" />
+    <Content Include="usercontrols\studiopages\EditArticle.ascx" />
+    <Content Include="usercontrols\studiopages\EditFranchiseOwner.ascx" />
+    <Content Include="usercontrols\studiopages\EditStudio.ascx" />
+    <Content Include="usercontrols\studiopages\EditSuccessStories.ascx" />
+    <Content Include="usercontrols\studiopages\FranchiseLogin.ascx" />
+    <Content Include="51Degrees.mobi.config" />
+    <None Include="ClubVision.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ClubVision.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="scripts\tinymce\langs\readme.md" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\readme.md" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce-small.json" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce.json" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <None Include="scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <None Include="VOS.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>VOS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\VIPWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiAccountResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiAccountsResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiAreaResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiAuthenticateResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiErrorOnly1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiErrors1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiGroupsResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiLanguagesResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiLocationInfoResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiLocationResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiLocationsAreaResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiLocationsCountryResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiLocationsResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiPositionsResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmApiTimezonesResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VIPWebService\WmSoapService.wsdl" />
+    <None Include="Web References\VOSWebService\MemberGoals.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VOSWebService\MemberLogin.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VOSWebService\MemberLoginAvailability.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VOSWebService\MemberPassword.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VOSWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\VOSWebService\Service.disco">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="usercontrols\studiopages\JoinCVRegistration.ascx" />
+    <Content Include="usercontrols\studiopages\StudioArticles.ascx" />
+    <Content Include="usercontrols\studiopages\StudioDetailOnStudioPost.ascx" />
+    <Content Include="usercontrols\studiopages\StudioLocator.ascx" />
+    <Content Include="usercontrols\studiopages\StudioMap.ascx" />
+    <Content Include="usercontrols\studiopages\FranchiseOwner.ascx" />
+    <Content Include="usercontrols\studiopages\StudioPartnerVOS.ascx" />
+    <Content Include="usercontrols\studiopages\SuccessStories.ascx" />
+    <Content Include="usercontrols\studiopages\StudioTimeTables.ascx" />
+    <Content Include="usercontrols\studiopages\WhatsOnVos.ascx" />
+    <Content Include="usercontrols\VVT\CardioSession.ascx" />
+    <Content Include="usercontrols\VVT\CardioSessionHistory.ascx" />
+    <Content Include="usercontrols\VVT\CardioSessionTab.ascx" />
+    <Content Include="usercontrols\VVT\FoodDiary.ascx" />
+    <Content Include="usercontrols\VVT\Menus.ascx" />
+    <Content Include="usercontrols\VVT\MyJourneyProgressPhoto.ascx" />
+    <Content Include="usercontrols\VVT\MyPreferences.ascx" />
+    <Content Include="usercontrols\VVT\ProfileTab.ascx" />
+    <Content Include="usercontrols\VVT\ProfileView.ascx" />
+    <Content Include="usercontrols\VVT\Registration.ascx" />
+    <Content Include="usercontrols\VVT\ShareDailyPlan.ascx" />
+    <Content Include="usercontrols\VVT\TrainingDiaryScreen.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\BodyType.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\EatingPlanner.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\ExercisePlanner.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\InitStepsNavigation.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\InitStepsRedirection.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\LifeStyleScreen.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\Measurements.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\MyGoals.ascx" />
+    <Content Include="usercontrols\VVT\VVT Initial Steps\PersonalProfile.ascx" />
+    <Content Include="usercontrols\VVT\WeightSessions.ascx" />
+    <Content Include="usercontrols\VVT\WeightsSessionsHistory.ascx" />
+    <Content Include="usercontrols\VVT\WeightsSessionsTab.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="Web References\VOSWebService\stEnquiryUpdate.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VOSWebService\stEventUpdate.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\VOSWebService\UserRole.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BCItemCollection.cs" />
+    <Compile Include="BCObject.cs" />
+    <Compile Include="BCVideo.cs" />
+    <Compile Include="BCVideoForMobile.cs" />
+    <Compile Include="BCVideoForMobileCollection.cs" />
+    <Compile Include="ClubVision.cs">
+      <DependentUpon>ClubVision.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ClubVision.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClubVision.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewsLetterAPI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SQLHelper.cs" />
+    <Compile Include="usercontrols\clubvision\ClientsLoginForTrainer.ascx.cs">
+      <DependentUpon>ClientsLoginForTrainer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ClientsLoginForTrainer.ascx.designer.cs">
+      <DependentUpon>ClientsLoginForTrainer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\InternalCVChat.ascx.cs">
+      <DependentUpon>InternalCVChat.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\InternalCVChat.ascx.designer.cs">
+      <DependentUpon>InternalCVChat.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\MealPictureEdit.ascx.cs">
+      <DependentUpon>MealPictureEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\MealPictureEdit.ascx.designer.cs">
+      <DependentUpon>MealPictureEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\DailyMenusView.ascx.cs">
+      <DependentUpon>DailyMenusView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\DailyMenusView.ascx.designer.cs">
+      <DependentUpon>DailyMenusView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\FoodDiary.ascx.cs">
+      <DependentUpon>FoodDiary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\FoodDiary.ascx.designer.cs">
+      <DependentUpon>FoodDiary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ForumsView.ascx.cs">
+      <DependentUpon>ForumsView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ForumsView.ascx.designer.cs">
+      <DependentUpon>ForumsView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Menus.ascx.cs">
+      <DependentUpon>Menus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Menus.ascx.designer.cs">
+      <DependentUpon>Menus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\BP2for10.ascx.cs">
+      <DependentUpon>BP2for10.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\BP2for10.ascx.designer.cs">
+      <DependentUpon>BP2for10.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\MetaTagGenerator.ascx.cs">
+      <DependentUpon>MetaTagGenerator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\MetaTagGenerator.ascx.designer.cs">
+      <DependentUpon>MetaTagGenerator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\MyExerciseTab.ascx.cs">
+      <DependentUpon>MyExerciseTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\MyExerciseTab.ascx.designer.cs">
+      <DependentUpon>MyExerciseTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\MyJourney_MyProgress.ascx.cs">
+      <DependentUpon>MyJourney_MyProgress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\MyJourney_MyProgress.ascx.designer.cs">
+      <DependentUpon>MyJourney_MyProgress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfileEdit.ascx.cs">
+      <DependentUpon>ProfileEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfileEdit.ascx.designer.cs">
+      <DependentUpon>ProfileEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfilePasswordEdit.ascx.cs">
+      <DependentUpon>ProfilePasswordEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfilePasswordEdit.ascx.designer.cs">
+      <DependentUpon>ProfilePasswordEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfilePictureEdit.ascx.cs">
+      <DependentUpon>ProfilePictureEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfilePictureEdit.ascx.designer.cs">
+      <DependentUpon>ProfilePictureEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfileTab.ascx.cs">
+      <DependentUpon>ProfileTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProfileTab.ascx.designer.cs">
+      <DependentUpon>ProfileTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProgressAndGoal.ascx.cs">
+      <DependentUpon>ProgressAndGoal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProgressAndGoal.ascx.designer.cs">
+      <DependentUpon>ProgressAndGoal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProgressGraph.ascx.cs">
+      <DependentUpon>ProgressGraph.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ProgressGraph.ascx.designer.cs">
+      <DependentUpon>ProgressGraph.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ReadySetGoQuestionnaire.ascx.cs">
+      <DependentUpon>ReadySetGoQuestionnaire.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ReadySetGoQuestionnaire.ascx.designer.cs">
+      <DependentUpon>ReadySetGoQuestionnaire.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ReferralPromo.ascx.cs">
+      <DependentUpon>ReferralPromo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ReferralPromo.ascx.designer.cs">
+      <DependentUpon>ReferralPromo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\RightPanel.ascx.cs">
+      <DependentUpon>RightPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\RightPanel.ascx.designer.cs">
+      <DependentUpon>RightPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ShareDailyPlan.ascx.cs">
+      <DependentUpon>ShareDailyPlan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\ShareDailyPlan.ascx.designer.cs">
+      <DependentUpon>ShareDailyPlan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Tools_EmotionTracker.ascx.cs">
+      <DependentUpon>Tools_EmotionTracker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Tools_EmotionTracker.ascx.designer.cs">
+      <DependentUpon>Tools_EmotionTracker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Tools_EnergyCalculator.ascx.cs">
+      <DependentUpon>Tools_EnergyCalculator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\Tools_EnergyCalculator.ascx.designer.cs">
+      <DependentUpon>Tools_EnergyCalculator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\TrainerRedirection.ascx.cs">
+      <DependentUpon>TrainerRedirection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\TrainerRedirection.ascx.designer.cs">
+      <DependentUpon>TrainerRedirection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\TrainingDiaryScreen.ascx.cs">
+      <DependentUpon>TrainingDiaryScreen.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\TrainingDiaryScreen.ascx.designer.cs">
+      <DependentUpon>TrainingDiaryScreen.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\VisionTV.ascx.cs">
+      <DependentUpon>VisionTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\VisionTV.ascx.designer.cs">
+      <DependentUpon>VisionTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\WhatsNewView.ascx.cs">
+      <DependentUpon>WhatsNewView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\WhatsNewView.ascx.designer.cs">
+      <DependentUpon>WhatsNewView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\WhatsOnTabs.ascx.cs">
+      <DependentUpon>WhatsOnTabs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\WhatsOnTabs.ascx.designer.cs">
+      <DependentUpon>WhatsOnTabs.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\WhatsOnView.ascx.cs">
+      <DependentUpon>WhatsOnView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\clubvision\WhatsOnView.ascx.designer.cs">
+      <DependentUpon>WhatsOnView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\elements\FindLocalStudioElement.ascx.cs">
+      <DependentUpon>FindLocalStudioElement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\elements\FindLocalStudioElement.ascx.designer.cs">
+      <DependentUpon>FindLocalStudioElement.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\elements\FindLocalStudioFooter.ascx.cs">
+      <DependentUpon>FindLocalStudioFooter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\elements\FindLocalStudioFooter.ascx.designer.cs">
+      <DependentUpon>FindLocalStudioFooter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\elements\NewsletterSubscribe.ascx.cs">
+      <DependentUpon>NewsletterSubscribe.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\elements\NewsletterSubscribe.ascx.designer.cs">
+      <DependentUpon>NewsletterSubscribe.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\BusinessPlaza.ascx.cs">
+      <DependentUpon>BusinessPlaza.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\BusinessPlaza.ascx.designer.cs">
+      <DependentUpon>BusinessPlaza.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\EditScreensPageLoad.ascx.cs">
+      <DependentUpon>EditScreensPageLoad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\EditScreensPageLoad.ascx.designer.cs">
+      <DependentUpon>EditScreensPageLoad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\BodyType.ascx.cs">
+      <DependentUpon>BodyType.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\BodyType.ascx.designer.cs">
+      <DependentUpon>BodyType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\EatingPlanner.ascx.cs">
+      <DependentUpon>EatingPlanner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\EatingPlanner.ascx.designer.cs">
+      <DependentUpon>EatingPlanner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\NewTrainingPlan.ascx.cs">
+      <DependentUpon>NewTrainingPlan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\NewTrainingPlan.ascx.designer.cs">
+      <DependentUpon>NewTrainingPlan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\EditProfilePassword.ascx.cs">
+      <DependentUpon>EditProfilePassword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\EditProfilePassword.ascx.designer.cs">
+      <DependentUpon>EditProfilePassword.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\LifeStyleScreen.ascx.cs">
+      <DependentUpon>LifeStyleScreen.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\LifeStyleScreen.ascx.designer.cs">
+      <DependentUpon>LifeStyleScreen.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\Measurements.ascx.cs">
+      <DependentUpon>Measurements.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\Measurements.ascx.designer.cs">
+      <DependentUpon>Measurements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\MyDetails.ascx.cs">
+      <DependentUpon>MyDetails.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\MyDetails.ascx.designer.cs">
+      <DependentUpon>MyDetails.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\MyGoals.ascx.cs">
+      <DependentUpon>MyGoals.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\MyGoals.ascx.designer.cs">
+      <DependentUpon>MyGoals.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\TrainingPlan.ascx.cs">
+      <DependentUpon>TrainingPlan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\initialscreens\TrainingPlan.ascx.designer.cs">
+      <DependentUpon>TrainingPlan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyDetailsProfileTab.ascx.cs">
+      <DependentUpon>MyDetailsProfileTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyDetailsProfileTab.ascx.designer.cs">
+      <DependentUpon>MyDetailsProfileTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyEatingPlanTab.ascx.cs">
+      <DependentUpon>MyEatingPlanTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyEatingPlanTab.ascx.designer.cs">
+      <DependentUpon>MyEatingPlanTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyJouneyTab.ascx.cs">
+      <DependentUpon>MyJouneyTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyJouneyTab.ascx.designer.cs">
+      <DependentUpon>MyJouneyTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyMeasurementsTabs.ascx.cs">
+      <DependentUpon>MyMeasurementsTabs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\MyMeasurementsTabs.ascx.designer.cs">
+      <DependentUpon>MyMeasurementsTabs.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\PasswordPictureEditTab.ascx.cs">
+      <DependentUpon>PasswordPictureEditTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\PasswordPictureEditTab.ascx.designer.cs">
+      <DependentUpon>PasswordPictureEditTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\ProfileEditMenu.ascx.cs">
+      <DependentUpon>ProfileEditMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\ProfileEditMenu.ascx.designer.cs">
+      <DependentUpon>ProfileEditMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\ProfileView.ascx.cs">
+      <DependentUpon>ProfileView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\ProfileView.ascx.designer.cs">
+      <DependentUpon>ProfileView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\Registration.ascx.cs">
+      <DependentUpon>Registration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\Registration.ascx.designer.cs">
+      <DependentUpon>Registration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\ResendConfirmEmail.ascx.cs">
+      <DependentUpon>ResendConfirmEmail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\ResendConfirmEmail.ascx.designer.cs">
+      <DependentUpon>ResendConfirmEmail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\WhatsOnEvents.ascx.cs">
+      <DependentUpon>WhatsOnEvents.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\externalclubvision\WhatsOnEvents.ascx.designer.cs">
+      <DependentUpon>WhatsOnEvents.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\DailyInspiration.ascx.cs">
+      <DependentUpon>DailyInspiration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\DailyInspiration.ascx.designer.cs">
+      <DependentUpon>DailyInspiration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\FranchiseCompetition.ascx.cs">
+      <DependentUpon>FranchiseCompetition.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\FranchiseCompetition.ascx.designer.cs">
+      <DependentUpon>FranchiseCompetition.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\IpnHandler.ascx.cs">
+      <DependentUpon>IpnHandler.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\IpnHandler.ascx.designer.cs">
+      <DependentUpon>IpnHandler.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\IpnSandboxHandler.ascx.cs">
+      <DependentUpon>IpnSandboxHandler.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\IpnSandboxHandler.ascx.designer.cs">
+      <DependentUpon>IpnSandboxHandler.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\MarketingPage_BlueSection.ascx.cs">
+      <DependentUpon>MarketingPage_BlueSection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\MarketingPage_BlueSection.ascx.designer.cs">
+      <DependentUpon>MarketingPage_BlueSection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\MonthlyCampaign.ascx.cs">
+      <DependentUpon>MonthlyCampaign.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\MonthlyCampaign.ascx.designer.cs">
+      <DependentUpon>MonthlyCampaign.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\NewsletterSubscriber.ascx.cs">
+      <DependentUpon>NewsletterSubscriber.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\NewsletterSubscriber.ascx.designer.cs">
+      <DependentUpon>NewsletterSubscriber.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\QuickLinks.ascx.cs">
+      <DependentUpon>QuickLinks.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\QuickLinks.ascx.designer.cs">
+      <DependentUpon>QuickLinks.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\ReportingPortal.ascx.cs">
+      <DependentUpon>ReportingPortal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\ReportingPortal.ascx.designer.cs">
+      <DependentUpon>ReportingPortal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\RubyRadar.ascx.cs">
+      <DependentUpon>RubyRadar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\RubyRadar.ascx.designer.cs">
+      <DependentUpon>RubyRadar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\general\StarshotsBday.ascx.cs">
+      <DependentUpon>StarshotsBday.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\general\StarshotsBday.ascx.designer.cs">
+      <DependentUpon>StarshotsBday.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\AddOwnFoodLightbox.ascx.cs">
+      <DependentUpon>AddOwnFoodLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\AddOwnFoodLightbox.ascx.designer.cs">
+      <DependentUpon>AddOwnFoodLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\BookConsultationLightbox.ascx.cs">
+      <DependentUpon>BookConsultationLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\BookConsultationLightbox.ascx.designer.cs">
+      <DependentUpon>BookConsultationLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\CopySharePlanLightbox.ascx.cs">
+      <DependentUpon>CopySharePlanLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\CopySharePlanLightbox.ascx.designer.cs">
+      <DependentUpon>CopySharePlanLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\EbookDownloader.ascx.cs">
+      <DependentUpon>EbookDownloader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\EbookDownloader.ascx.designer.cs">
+      <DependentUpon>EbookDownloader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\EnquiryLightbox.ascx.cs">
+      <DependentUpon>EnquiryLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\EnquiryLightbox.ascx.designer.cs">
+      <DependentUpon>EnquiryLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\ErrorPopup.ascx.cs">
+      <DependentUpon>ErrorPopup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\ErrorPopup.ascx.designer.cs">
+      <DependentUpon>ErrorPopup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\EventRegister.ascx.cs">
+      <DependentUpon>EventRegister.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\EventRegister.ascx.designer.cs">
+      <DependentUpon>EventRegister.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\JoinTheTeamLightbox.ascx.cs">
+      <DependentUpon>JoinTheTeamLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\JoinTheTeamLightbox.ascx.designer.cs">
+      <DependentUpon>JoinTheTeamLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\BookShoppingTourOrSeminarLightbox.ascx.cs">
+      <DependentUpon>BookShoppingTourOrSeminarLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\BookShoppingTourOrSeminarLightbox.ascx.designer.cs">
+      <DependentUpon>BookShoppingTourOrSeminarLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\LandingPageInfoLightbox.ascx.cs">
+      <DependentUpon>LandingPageInfoLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\LandingPageInfoLightbox.ascx.designer.cs">
+      <DependentUpon>LandingPageInfoLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\NewGoalMeasurementsLightBox.ascx.cs">
+      <DependentUpon>NewGoalMeasurementsLightBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\NewGoalMeasurementsLightBox.ascx.designer.cs">
+      <DependentUpon>NewGoalMeasurementsLightBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\TrainerClientsListLightbox.ascx.cs">
+      <DependentUpon>TrainerClientsListLightbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\lightboxes\TrainerClientsListLightbox.ascx.designer.cs">
+      <DependentUpon>TrainerClientsListLightbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditArticle.ascx.cs">
+      <DependentUpon>EditArticle.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditArticle.ascx.designer.cs">
+      <DependentUpon>EditArticle.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditFranchiseOwner.ascx.cs">
+      <DependentUpon>EditFranchiseOwner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditFranchiseOwner.ascx.designer.cs">
+      <DependentUpon>EditFranchiseOwner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditStudio.ascx.cs">
+      <DependentUpon>EditStudio.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditStudio.ascx.designer.cs">
+      <DependentUpon>EditStudio.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditSuccessStories.ascx.cs">
+      <DependentUpon>EditSuccessStories.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\EditSuccessStories.ascx.designer.cs">
+      <DependentUpon>EditSuccessStories.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\FranchiseLogin.ascx.cs">
+      <DependentUpon>FranchiseLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\FranchiseLogin.ascx.designer.cs">
+      <DependentUpon>FranchiseLogin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\JoinCVRegistration.ascx.cs">
+      <DependentUpon>JoinCVRegistration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\JoinCVRegistration.ascx.designer.cs">
+      <DependentUpon>JoinCVRegistration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioArticles.ascx.cs">
+      <DependentUpon>StudioArticles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioArticles.ascx.designer.cs">
+      <DependentUpon>StudioArticles.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioDetailOnStudioPost.ascx.cs">
+      <DependentUpon>StudioDetailOnStudioPost.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioDetailOnStudioPost.ascx.designer.cs">
+      <DependentUpon>StudioDetailOnStudioPost.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioLocator.ascx.cs">
+      <DependentUpon>StudioLocator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioLocator.ascx.designer.cs">
+      <DependentUpon>StudioLocator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioMap.ascx.cs">
+      <DependentUpon>StudioMap.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioMap.ascx.designer.cs">
+      <DependentUpon>StudioMap.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\FranchiseOwner.ascx.cs">
+      <DependentUpon>FranchiseOwner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\FranchiseOwner.ascx.designer.cs">
+      <DependentUpon>FranchiseOwner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioPartnerVOS.ascx.cs">
+      <DependentUpon>StudioPartnerVOS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioPartnerVOS.ascx.designer.cs">
+      <DependentUpon>StudioPartnerVOS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\SuccessStories.ascx.cs">
+      <DependentUpon>SuccessStories.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\SuccessStories.ascx.designer.cs">
+      <DependentUpon>SuccessStories.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioTimeTables.ascx.cs">
+      <DependentUpon>StudioTimeTables.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\StudioTimeTables.ascx.designer.cs">
+      <DependentUpon>StudioTimeTables.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\WhatsOnVos.ascx.cs">
+      <DependentUpon>WhatsOnVos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\studiopages\WhatsOnVos.ascx.designer.cs">
+      <DependentUpon>WhatsOnVos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\CardioSession.ascx.cs">
+      <DependentUpon>CardioSession.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\CardioSession.ascx.designer.cs">
+      <DependentUpon>CardioSession.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\CardioSessionHistory.ascx.cs">
+      <DependentUpon>CardioSessionHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\CardioSessionHistory.ascx.designer.cs">
+      <DependentUpon>CardioSessionHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\CardioSessionTab.ascx.cs">
+      <DependentUpon>CardioSessionTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\CardioSessionTab.ascx.designer.cs">
+      <DependentUpon>CardioSessionTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\FoodDiary.ascx.cs">
+      <DependentUpon>FoodDiary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\FoodDiary.ascx.designer.cs">
+      <DependentUpon>FoodDiary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\Menus.ascx.cs">
+      <DependentUpon>Menus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\Menus.ascx.designer.cs">
+      <DependentUpon>Menus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\MyJourneyProgressPhoto.ascx.cs">
+      <DependentUpon>MyJourneyProgressPhoto.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\MyJourneyProgressPhoto.ascx.designer.cs">
+      <DependentUpon>MyJourneyProgressPhoto.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\MyPreferences.ascx.cs">
+      <DependentUpon>MyPreferences.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\MyPreferences.ascx.designer.cs">
+      <DependentUpon>MyPreferences.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\ProfileTab.ascx.cs">
+      <DependentUpon>ProfileTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\ProfileTab.ascx.designer.cs">
+      <DependentUpon>ProfileTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\ProfileView.ascx.cs">
+      <DependentUpon>ProfileView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\ProfileView.ascx.designer.cs">
+      <DependentUpon>ProfileView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\Registration.ascx.cs">
+      <DependentUpon>Registration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\Registration.ascx.designer.cs">
+      <DependentUpon>Registration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\ShareDailyPlan.ascx.cs">
+      <DependentUpon>ShareDailyPlan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\ShareDailyPlan.ascx.designer.cs">
+      <DependentUpon>ShareDailyPlan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\TrainingDiaryScreen.ascx.cs">
+      <DependentUpon>TrainingDiaryScreen.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\TrainingDiaryScreen.ascx.designer.cs">
+      <DependentUpon>TrainingDiaryScreen.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\BodyType.ascx.cs">
+      <DependentUpon>BodyType.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\BodyType.ascx.designer.cs">
+      <DependentUpon>BodyType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\EatingPlanner.ascx.cs">
+      <DependentUpon>EatingPlanner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\EatingPlanner.ascx.designer.cs">
+      <DependentUpon>EatingPlanner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\ExercisePlanner.ascx.cs">
+      <DependentUpon>ExercisePlanner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\ExercisePlanner.ascx.designer.cs">
+      <DependentUpon>ExercisePlanner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\InitStepsNavigation.ascx.cs">
+      <DependentUpon>InitStepsNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\InitStepsNavigation.ascx.designer.cs">
+      <DependentUpon>InitStepsNavigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\InitStepsRedirection.ascx.cs">
+      <DependentUpon>InitStepsRedirection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\InitStepsRedirection.ascx.designer.cs">
+      <DependentUpon>InitStepsRedirection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\LifeStyleScreen.ascx.cs">
+      <DependentUpon>LifeStyleScreen.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\LifeStyleScreen.ascx.designer.cs">
+      <DependentUpon>LifeStyleScreen.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\Measurements.ascx.cs">
+      <DependentUpon>Measurements.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\Measurements.ascx.designer.cs">
+      <DependentUpon>Measurements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\MyGoals.ascx.cs">
+      <DependentUpon>MyGoals.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\MyGoals.ascx.designer.cs">
+      <DependentUpon>MyGoals.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\PersonalProfile.ascx.cs">
+      <DependentUpon>PersonalProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\VVT Initial Steps\PersonalProfile.ascx.designer.cs">
+      <DependentUpon>PersonalProfile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\WeightSessions.ascx.cs">
+      <DependentUpon>WeightSessions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\WeightSessions.ascx.designer.cs">
+      <DependentUpon>WeightSessions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\WeightsSessionsHistory.ascx.cs">
+      <DependentUpon>WeightsSessionsHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\WeightsSessionsHistory.ascx.designer.cs">
+      <DependentUpon>WeightsSessionsHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrols\VVT\WeightsSessionsTab.ascx.cs">
+      <DependentUpon>WeightsSessionsTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrols\VVT\WeightsSessionsTab.ascx.designer.cs">
+      <DependentUpon>WeightsSessionsTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="VOS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VOS.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="VPTFacilities.cs" />
+    <Compile Include="Web References\VIPWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\VOSWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://visionpt-playground.worldmanager.com/soap/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\VIPWebService\</RelPath>
+      <UpdateFromURL>http://visionpt-playground.worldmanager.com/soap/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>VisionPersonalTrainingProject_com_worldmanager_visionpt_playground_WmSoapServiceService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://vosweblink.visionpt.com.au/service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\VOSWebService\</RelPath>
+      <UpdateFromURL>http://vosweblink.visionpt.com.au/service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>VisionPersonalTrainingProject_VOSWebService_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\VOSWebService\Service.wsdl">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClubVision.dbml.layout">
+      <DependentUpon>ClubVision.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VOS.dbml.layout">
+      <DependentUpon>VOS.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>18512</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://visionpt-playground.worldmanager.com/soap/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="WmSoapService" targetNamespace="http://visionpt-playground.worldmanager.com/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://visionpt-playground.worldmanager.com/soap/">
+      <xsd:complexType name="WmApiError">
+        <xsd:all>
+          <xsd:element name="number" nillable="true" type="xsd:int" />
+          <xsd:element name="description" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAuthenticateResult">
+        <xsd:all>
+          <xsd:element name="token" nillable="true" type="xsd:string" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiCountry">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiCountry[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiAreaOutput">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiAreaOutput[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiLocationOutput">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiLocationOutput[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationOutput">
+        <xsd:all>
+          <xsd:element name="countryName" nillable="true" type="xsd:string" />
+          <xsd:element name="areaName" nillable="true" type="xsd:string" />
+          <xsd:element name="countryCode" nillable="true" type="xsd:string" />
+          <xsd:element name="areaCode" nillable="true" type="xsd:string" />
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="phone" nillable="true" type="xsd:string" />
+          <xsd:element name="address" nillable="true" type="xsd:string" />
+          <xsd:element name="suburb" nillable="true" type="xsd:string" />
+          <xsd:element name="state" nillable="true" type="xsd:string" />
+          <xsd:element name="postcode" nillable="true" type="xsd:string" />
+          <xsd:element name="contactName" nillable="true" type="xsd:string" />
+          <xsd:element name="contactPosition" nillable="true" type="xsd:string" />
+          <xsd:element name="fax" nillable="true" type="xsd:string" />
+          <xsd:element name="mobile" nillable="true" type="xsd:string" />
+          <xsd:element name="showMap" nillable="true" type="xsd:string" />
+          <xsd:element name="geocode" nillable="true" type="xsd:string" />
+          <xsd:element name="locationType" nillable="true" type="xsd:string" />
+          <xsd:element name="locationPlacement" nillable="true" type="xsd:string" />
+          <xsd:element name="locationConcept" nillable="true" type="xsd:string" />
+          <xsd:element name="ownershipType" nillable="true" type="xsd:string" />
+          <xsd:element name="timezone" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAreaOutput">
+        <xsd:all>
+          <xsd:element name="countryName" nillable="true" type="xsd:string" />
+          <xsd:element name="locations" nillable="true" type="tns:ArrayOfWmApiLocationOutput" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="countryCode" nillable="true" type="xsd:string" />
+          <xsd:element name="timezone" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiCountry">
+        <xsd:all>
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="areas" nillable="true" type="tns:ArrayOfWmApiAreaOutput" />
+          <xsd:element name="languages" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="timezone" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationsResult">
+        <xsd:all>
+          <xsd:element name="countries" nillable="true" type="tns:ArrayOfWmApiCountry" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationsCountryResult">
+        <xsd:all>
+          <xsd:element name="areas" nillable="true" type="tns:ArrayOfWmApiAreaOutput" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationsAreaResult">
+        <xsd:all>
+          <xsd:element name="locations" nillable="true" type="tns:ArrayOfWmApiLocationOutput" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationResult">
+        <xsd:all>
+          <xsd:element name="location" nillable="true" type="tns:WmApiLocationOutput" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationInput">
+        <xsd:all>
+          <xsd:element name="countryCode" nillable="true" type="xsd:string" />
+          <xsd:element name="areaCode" nillable="true" type="xsd:string" />
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="phone" nillable="true" type="xsd:string" />
+          <xsd:element name="address" nillable="true" type="xsd:string" />
+          <xsd:element name="suburb" nillable="true" type="xsd:string" />
+          <xsd:element name="state" nillable="true" type="xsd:string" />
+          <xsd:element name="postcode" nillable="true" type="xsd:string" />
+          <xsd:element name="contactName" nillable="true" type="xsd:string" />
+          <xsd:element name="contactPosition" nillable="true" type="xsd:string" />
+          <xsd:element name="fax" nillable="true" type="xsd:string" />
+          <xsd:element name="mobile" nillable="true" type="xsd:string" />
+          <xsd:element name="showMap" nillable="true" type="xsd:string" />
+          <xsd:element name="geocode" nillable="true" type="xsd:string" />
+          <xsd:element name="locationType" nillable="true" type="xsd:string" />
+          <xsd:element name="locationPlacement" nillable="true" type="xsd:string" />
+          <xsd:element name="locationConcept" nillable="true" type="xsd:string" />
+          <xsd:element name="ownershipType" nillable="true" type="xsd:string" />
+          <xsd:element name="timezone" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAreaInput">
+        <xsd:all>
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="countryCode" nillable="true" type="xsd:string" />
+          <xsd:element name="timezone" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAreaResult">
+        <xsd:all>
+          <xsd:element name="area" nillable="true" type="tns:WmApiAreaOutput" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiGroup">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiGroup[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiGroup">
+        <xsd:all>
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="shortname" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiGroupsResult">
+        <xsd:all>
+          <xsd:element name="groups" nillable="true" type="tns:ArrayOfWmApiGroup" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAccount">
+        <xsd:all>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="groupID" nillable="true" type="xsd:int" />
+          <xsd:element name="countries" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="areas" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="locations" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="username" nillable="true" type="xsd:string" />
+          <xsd:element name="password" nillable="true" type="xsd:string" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="active" nillable="true" type="xsd:string" />
+          <xsd:element name="language" nillable="true" type="xsd:string" />
+          <xsd:element name="positionName" nillable="true" type="xsd:string" />
+          <xsd:element name="positionType" nillable="true" type="xsd:string" />
+          <xsd:element name="email" nillable="true" type="xsd:string" />
+          <xsd:element name="phone" nillable="true" type="xsd:string" />
+          <xsd:element name="mobile" nillable="true" type="xsd:string" />
+          <xsd:element name="dob" nillable="true" type="xsd:string" />
+          <xsd:element name="receiveEmails" nillable="true" type="xsd:string" />
+          <xsd:element name="timezone" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAccountResult">
+        <xsd:all>
+          <xsd:element name="account" nillable="true" type="tns:WmApiAccount" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiErrorOnly">
+        <xsd:all>
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiAccount">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiAccount[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiAccountsResult">
+        <xsd:all>
+          <xsd:element name="accounts" nillable="true" type="tns:ArrayOfWmApiAccount" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLocationInfoResult">
+        <xsd:all>
+          <xsd:element name="options" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiPositionsResult">
+        <xsd:all>
+          <xsd:element name="positions" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiLanguagesResult">
+        <xsd:all>
+          <xsd:element name="languages" nillable="true" type="soap-enc:Array" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiTimezone">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiTimezone[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiTimezone">
+        <xsd:all>
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="value" nillable="true" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiTimezonesResult">
+        <xsd:all>
+          <xsd:element name="timezones" nillable="true" type="tns:ArrayOfWmApiTimezone" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWmApiError">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:WmApiError[]" ref="soap-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="WmApiErrors">
+        <xsd:all>
+          <xsd:element name="errors" nillable="true" type="tns:ArrayOfWmApiError" />
+          <xsd:element name="error" nillable="true" type="tns:WmApiError" />
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="authenticateIn">
+    <wsdl:part name="apiKey" type="xsd:string" />
+    <wsdl:part name="username" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="authenticateOut">
+    <wsdl:part name="return" type="tns:WmApiAuthenticateResult" />
+  </wsdl:message>
+  <wsdl:message name="getLocationsIn">
+    <wsdl:part name="token" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLocationsOut">
+    <wsdl:part name="return" type="tns:WmApiLocationsResult" />
+  </wsdl:message>
+  <wsdl:message name="getLocationsByCountryCodeIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="code" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLocationsByCountryCodeOut">
+    <wsdl:part name="return" type="tns:WmApiLocationsCountryResult" />
+  </wsdl:message>
+  <wsdl:message name="getLocationsByAreaCodeIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="code" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLocationsByAreaCodeOut">
+    <wsdl:part name="return" type="tns:WmApiLocationsAreaResult" />
+  </wsdl:message>
+  <wsdl:message name="getLocationByCodeIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="code" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLocationByCodeOut">
+    <wsdl:part name="return" type="tns:WmApiLocationResult" />
+  </wsdl:message>
+  <wsdl:message name="updateLocationIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="location" type="tns:WmApiLocationInput" />
+  </wsdl:message>
+  <wsdl:message name="updateLocationOut">
+    <wsdl:part name="return" type="tns:WmApiLocationResult" />
+  </wsdl:message>
+  <wsdl:message name="addLocationIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="location" type="tns:WmApiLocationInput" />
+  </wsdl:message>
+  <wsdl:message name="addLocationOut">
+    <wsdl:part name="return" type="tns:WmApiLocationResult" />
+  </wsdl:message>
+  <wsdl:message name="addAreaIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="area" type="tns:WmApiAreaInput" />
+  </wsdl:message>
+  <wsdl:message name="addAreaOut">
+    <wsdl:part name="return" type="tns:WmApiAreaResult" />
+  </wsdl:message>
+  <wsdl:message name="updateAreaIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="area" type="tns:WmApiAreaInput" />
+  </wsdl:message>
+  <wsdl:message name="updateAreaOut">
+    <wsdl:part name="return" type="tns:WmApiAreaResult" />
+  </wsdl:message>
+  <wsdl:message name="getGroupsIn">
+    <wsdl:part name="token" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getGroupsOut">
+    <wsdl:part name="return" type="tns:WmApiGroupsResult" />
+  </wsdl:message>
+  <wsdl:message name="addAccountIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="account" type="tns:WmApiAccount" />
+  </wsdl:message>
+  <wsdl:message name="addAccountOut">
+    <wsdl:part name="return" type="tns:WmApiAccountResult" />
+  </wsdl:message>
+  <wsdl:message name="updateAccountIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="account" type="tns:WmApiAccount" />
+  </wsdl:message>
+  <wsdl:message name="updateAccountOut">
+    <wsdl:part name="return" type="tns:WmApiAccountResult" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="username" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordOut">
+    <wsdl:part name="return" type="tns:WmApiErrorOnly" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByCountryCodeIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="code" type="xsd:string" />
+    <wsdl:part name="groupID" type="xsd:int" />
+    <wsdl:part name="active" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByCountryCodeOut">
+    <wsdl:part name="return" type="tns:WmApiAccountsResult" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByAreaCodeIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="code" type="xsd:string" />
+    <wsdl:part name="groupID" type="xsd:int" />
+    <wsdl:part name="active" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByAreaCodeOut">
+    <wsdl:part name="return" type="tns:WmApiAccountsResult" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByLocationCodeIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="code" type="xsd:string" />
+    <wsdl:part name="groupID" type="xsd:int" />
+    <wsdl:part name="active" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByLocationCodeOut">
+    <wsdl:part name="return" type="tns:WmApiAccountsResult" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByGroupIDIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="groupID" type="xsd:int" />
+    <wsdl:part name="active" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getAccountsByGroupIDOut">
+    <wsdl:part name="return" type="tns:WmApiAccountsResult" />
+  </wsdl:message>
+  <wsdl:message name="getLocationInfoIn">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="section" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLocationInfoOut">
+    <wsdl:part name="return" type="tns:WmApiLocationInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="getPositionsIn">
+    <wsdl:part name="token" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getPositionsOut">
+    <wsdl:part name="return" type="tns:WmApiPositionsResult" />
+  </wsdl:message>
+  <wsdl:message name="getLanguagesIn">
+    <wsdl:part name="token" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLanguagesOut">
+    <wsdl:part name="return" type="tns:WmApiLanguagesResult" />
+  </wsdl:message>
+  <wsdl:message name="getTimezonesIn">
+    <wsdl:part name="token" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getTimezonesOut">
+    <wsdl:part name="return" type="tns:WmApiTimezonesResult" />
+  </wsdl:message>
+  <wsdl:message name="getErrorsIn">
+    <wsdl:part name="token" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getErrorsOut">
+    <wsdl:part name="return" type="tns:WmApiErrors" />
+  </wsdl:message>
+  <wsdl:portType name="WmSoapServicePort">
+    <wsdl:operation name="authenticate">
+      <documentation>Authenticate a request and start a session.</documentation>
+      <wsdl:input message="tns:authenticateIn" />
+      <wsdl:output message="tns:authenticateOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLocations">
+      <documentation>Get all locations.</documentation>
+      <wsdl:input message="tns:getLocationsIn" />
+      <wsdl:output message="tns:getLocationsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLocationsByCountryCode">
+      <documentation>Get locations by country code.</documentation>
+      <wsdl:input message="tns:getLocationsByCountryCodeIn" />
+      <wsdl:output message="tns:getLocationsByCountryCodeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLocationsByAreaCode">
+      <documentation>Get locations by area code.</documentation>
+      <wsdl:input message="tns:getLocationsByAreaCodeIn" />
+      <wsdl:output message="tns:getLocationsByAreaCodeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLocationByCode">
+      <documentation>Get location by code.</documentation>
+      <wsdl:input message="tns:getLocationByCodeIn" />
+      <wsdl:output message="tns:getLocationByCodeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateLocation">
+      <documentation>Update a location.</documentation>
+      <wsdl:input message="tns:updateLocationIn" />
+      <wsdl:output message="tns:updateLocationOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addLocation">
+      <documentation>Add a location.</documentation>
+      <wsdl:input message="tns:addLocationIn" />
+      <wsdl:output message="tns:addLocationOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addArea">
+      <documentation>Add an area.</documentation>
+      <wsdl:input message="tns:addAreaIn" />
+      <wsdl:output message="tns:addAreaOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateArea">
+      <documentation>Update an existing area.</documentation>
+      <wsdl:input message="tns:updateAreaIn" />
+      <wsdl:output message="tns:updateAreaOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getGroups">
+      <documentation>Return a list of groups.</documentation>
+      <wsdl:input message="tns:getGroupsIn" />
+      <wsdl:output message="tns:getGroupsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addAccount">
+      <documentation>Add an account.</documentation>
+      <wsdl:input message="tns:addAccountIn" />
+      <wsdl:output message="tns:addAccountOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAccount">
+      <documentation>Update an account.</documentation>
+      <wsdl:input message="tns:updateAccountIn" />
+      <wsdl:output message="tns:updateAccountOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <documentation>Change a password.</documentation>
+      <wsdl:input message="tns:changePasswordIn" />
+      <wsdl:output message="tns:changePasswordOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByCountryCode">
+      <documentation>Get accounts by country.code.</documentation>
+      <wsdl:input message="tns:getAccountsByCountryCodeIn" />
+      <wsdl:output message="tns:getAccountsByCountryCodeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByAreaCode">
+      <documentation>Get accounts by area code.</documentation>
+      <wsdl:input message="tns:getAccountsByAreaCodeIn" />
+      <wsdl:output message="tns:getAccountsByAreaCodeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByLocationCode">
+      <documentation>Get accounts by location code.</documentation>
+      <wsdl:input message="tns:getAccountsByLocationCodeIn" />
+      <wsdl:output message="tns:getAccountsByLocationCodeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByGroupID">
+      <documentation>Get accounts by groupID.</documentation>
+      <wsdl:input message="tns:getAccountsByGroupIDIn" />
+      <wsdl:output message="tns:getAccountsByGroupIDOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLocationInfo">
+      <documentation>Return a list of location info settings.</documentation>
+      <wsdl:input message="tns:getLocationInfoIn" />
+      <wsdl:output message="tns:getLocationInfoOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPositions">
+      <documentation>Return a list of positions.</documentation>
+      <wsdl:input message="tns:getPositionsIn" />
+      <wsdl:output message="tns:getPositionsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLanguages">
+      <documentation>Return a list of languages.</documentation>
+      <wsdl:input message="tns:getLanguagesIn" />
+      <wsdl:output message="tns:getLanguagesOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTimezones">
+      <documentation>Return a list of timezones.</documentation>
+      <wsdl:input message="tns:getTimezonesIn" />
+      <wsdl:output message="tns:getTimezonesOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getErrors">
+      <documentation>Return a list of possible errors and numbers.</documentation>
+      <wsdl:input message="tns:getErrorsIn" />
+      <wsdl:output message="tns:getErrorsOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WmSoapServiceBinding" type="tns:WmSoapServicePort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="authenticate">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#authenticate" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLocations">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getLocations" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationsByCountryCode">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getLocationsByCountryCode" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationsByAreaCode">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getLocationsByAreaCode" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationByCode">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getLocationByCode" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLocation">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#updateLocation" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLocation">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#addLocation" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addArea">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#addArea" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateArea">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#updateArea" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroups">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getGroups" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAccount">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#addAccount" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAccount">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#updateAccount" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#changePassword" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByCountryCode">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getAccountsByCountryCode" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByAreaCode">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getAccountsByAreaCode" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByLocationCode">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getAccountsByLocationCode" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountsByGroupID">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getAccountsByGroupID" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationInfo">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getLocationInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPositions">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getPositions" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLanguages">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getLanguages" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTimezones">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getTimezones" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getErrors">
+      <soap:operation soapAction="http://visionpt-playground.worldmanager.com/soap/#getErrors" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://visionpt-playground.worldmanager.com/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WmSoapServiceService">
+    <wsdl:port name="WmSoapServicePort" binding="tns:WmSoapServiceBinding">
+      <soap:address location="http://visionpt-playground.worldmanager.com/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

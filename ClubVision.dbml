@@ -1,0 +1,2112 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="vision_club" Class="ClubVisionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VHQ-D-W7P-001;Initial Catalog=vision_club;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vision_clubConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Category_ItemCategory" Member="ItemCategories" ThisKey="Id" OtherKey="CategoryId" Type="ItemCategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MenuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FromMealId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Item_MenuItem" Member="Item" ThisKey="ItemId" OtherKey="Id" Type="Item" IsForeignKey="true" />
+      <Association Name="MealTime_MenuItem" Member="MealTime" ThisKey="MealTimeId" OtherKey="Id" Type="MealTime" IsForeignKey="true" />
+      <Association Name="Menu_MenuItem" Member="Menu" ThisKey="MenuId" OtherKey="Id" Type="Menu" IsForeignKey="true" />
+      <Association Name="ItemAdd_MenuItem" Member="ItemAdd" ThisKey="ItemId" OtherKey="Id" Type="ItemAdd" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item" Member="Items">
+    <Type Name="Item">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keep" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Item_MenuItem" Member="MenuItems" ThisKey="Id" OtherKey="ItemId" Type="MenuItem" />
+      <Association Name="Item_ItemCategory" Member="ItemCategories" ThisKey="Id" OtherKey="ItemId" Type="ItemCategory" />
+      <Association Name="Item_MealItem" Member="MealItems" ThisKey="Id" OtherKey="ItemId" Type="MealItem" />
+      <Association Name="Item_DiaryEntry" Member="DiaryEntries" ThisKey="Id" OtherKey="ItemId" Type="DiaryEntry" />
+      <Association Name="Item_ShareEntry" Member="ShareEntries" ThisKey="Id" OtherKey="ItemId" Type="ShareEntry" />
+      <Association Name="Item_FavouriteFoodItem" Member="FavouriteFoodItems" ThisKey="Id" OtherKey="FoodItemId" Type="FavouriteFoodItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemCategory" Member="ItemCategories">
+    <Type Name="ItemCategory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Category_ItemCategory" Member="Category" ThisKey="CategoryId" OtherKey="Id" Type="Category" IsForeignKey="true" />
+      <Association Name="Item_ItemCategory" Member="Item" ThisKey="ItemId" OtherKey="Id" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemRequest" Member="ItemRequests">
+    <Type Name="ItemRequest">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Request" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MealItem" Member="MealItems">
+    <Type Name="MealItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MealId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Item_MealItem" Member="Item" ThisKey="ItemId" OtherKey="Id" Type="Item" IsForeignKey="true" />
+      <Association Name="Meal_MealItem" Member="Meal" ThisKey="MealId" OtherKey="Id" Type="Meal" IsForeignKey="true" />
+      <Association Name="ItemAdd_MealItem" Member="ItemAdd" ThisKey="ItemId" OtherKey="Id" Type="ItemAdd" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MealTime" Member="MealTimes">
+    <Type Name="MealTime">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MealTime_MenuItem" Member="MenuItems" ThisKey="Id" OtherKey="MealTimeId" Type="MenuItem" />
+      <Association Name="MealTime_DiaryEntry" Member="DiaryEntries" ThisKey="Id" OtherKey="MealTimeId" Type="DiaryEntry" />
+      <Association Name="MealTime_FavouriteFoodItem" Member="FavouriteFoodItems" ThisKey="Id" OtherKey="MealTimeId" Type="FavouriteFoodItem" />
+      <Association Name="MealTime_CustomerMood" Member="CustomerMoods" ThisKey="Id" OtherKey="MealTimeId" Type="CustomerMood" />
+      <Association Name="MealTime_CustomerPreference" Member="CustomerPreferences" ThisKey="Id" OtherKey="MealTimeId" Type="CustomerPreference" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerImage" Member="CustomerImages">
+    <Type Name="CustomerImage">
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProfileImage" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_CustomerImage" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menu" Member="Menus">
+    <Type Name="Menu">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_MenuItem" Member="MenuItems" ThisKey="Id" OtherKey="MenuId" Type="MenuItem" />
+      <Association Name="Customer_Menu" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Meal" Member="Meals">
+    <Type Name="Meal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="VideoId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PDFAddress" Type="System.String" DbType="VarChar(50) NULL" CanBeNull="true" />
+      <Column Name="iPortion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cDescription" Type="System.String" DbType="VarChar(500) NULL" CanBeNull="true" />
+      <Column Name="bIsFromWeb" Type="System.Boolean" DbType="Bit NULL" CanBeNull="true" />
+      <Association Name="Meal_MealItem" Member="MealItems" ThisKey="Id" OtherKey="MealId" Type="MealItem" />
+      <Association Name="Meal_MealFromBrightCove" Member="MealFromBrightCoves" ThisKey="Id" OtherKey="MealId" Type="MealFromBrightCove" />
+      <Association Name="Customer_Meal" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemAdd" Member="ItemAdds">
+    <Type Name="ItemAdd">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keep" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsItemRequest" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="ItemAdd_MenuItem" Member="MenuItems" ThisKey="Id" OtherKey="ItemId" Type="MenuItem" />
+      <Association Name="ItemAdd_MealItem" Member="MealItems" ThisKey="Id" OtherKey="ItemId" Type="MealItem" />
+      <Association Name="ItemAdd_DiaryEntry" Member="DiaryEntries" ThisKey="Id" OtherKey="ItemId" Type="DiaryEntry" />
+      <Association Name="ItemAdd_ShareEntry" Member="ShareEntries" ThisKey="Id" OtherKey="ItemId" Type="ShareEntry" />
+      <Association Name="ItemAdd_FavouriteFoodItem" Member="FavouriteFoodItems" ThisKey="Id" OtherKey="FoodItemId" Type="FavouriteFoodItem" />
+      <Association Name="Customer_ItemAdd" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DiaryEntry" Member="DiaryEntries">
+    <Type Name="DiaryEntry">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FromMealId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FromMenuId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FromCaptain" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="MealTime_DiaryEntry" Member="MealTime" ThisKey="MealTimeId" OtherKey="Id" Type="MealTime" IsForeignKey="true" />
+      <Association Name="Item_DiaryEntry" Member="Item" ThisKey="ItemId" OtherKey="Id" Type="Item" IsForeignKey="true" />
+      <Association Name="ItemAdd_DiaryEntry" Member="ItemAdd" ThisKey="ItemId" OtherKey="Id" Type="ItemAdd" IsForeignKey="true" />
+      <Association Name="Customer_DiaryEntry" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_External_DiaryEntry" Member="Customer_External" ThisKey="CustomerId" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrainingDiary" Member="TrainingDiaries">
+    <Type Name="TrainingDiary">
+      <Column Name="iId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iAMPM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cExercise" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="iDuration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iExerType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iIntensity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="bCompleteState" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="intValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bFromVOS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="iExValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bIsExtra" Type="System.Boolean" DbType="Bit NULL" CanBeNull="true" />
+      <Column Name="bIsWPExAttached" Type="System.Boolean" DbType="Bit NULL" CanBeNull="true" />
+      <Column Name="bIsCardioHasProg" Type="System.Boolean" DbType="Bit NULL" CanBeNull="true" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="iWeekStart" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iSessionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TrainingDiary_TrainingDiaryExtra" Member="TrainingDiaryExtras" ThisKey="iId" OtherKey="TrainingDiaryId" Type="TrainingDiaryExtra" />
+      <Association Name="TrainingDiary_TrainingDiaryPlanner_External" Member="TrainingDiaryPlanner_Externals" ThisKey="iId" OtherKey="iTrainingDiaryRefId" Type="TrainingDiaryPlanner_External" />
+      <Association Name="TrainingDiary_TrainingDiaryWeightProgram" Member="TrainingDiaryWeightPrograms" ThisKey="iId" OtherKey="iTrainingDiaryRefId" Type="TrainingDiaryWeightProgram" />
+      <Association Name="TrainingDiary_TrainingDiaryCardioProgram" Member="TrainingDiaryCardioPrograms" ThisKey="iId" OtherKey="iTrainingDiaryRefId" Type="TrainingDiaryCardioProgram" />
+      <Association Name="TrainingDiary_TrainingDiaryExtraMinute" Member="TrainingDiaryExtraMinutes" ThisKey="iId" OtherKey="iTrainingDiaryRefId" Type="TrainingDiaryExtraMinute" />
+      <Association Name="TrainingDiary_Session" Member="Sessions" ThisKey="iId" OtherKey="TrainingDiaryID" Type="Session" />
+      <Association Name="Customer_TrainingDiary" Member="Customer" ThisKey="iCustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_External_TrainingDiary" Member="Customer_External" ThisKey="iCustomerId" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StreetAddress" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Postcode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DaytimePhone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(1020) NOT NULL" CanBeNull="false" />
+      <Column Name="Trainer" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Studio" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Carb" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Goal" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastGS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NextGS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="GoalWt" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentWt" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StartWt" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgressWt" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CWRatio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cardio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Weights" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CardioLM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CardioHard" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StudioId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrainerContact" Type="System.String" DbType="VarChar(50) NULL" CanBeNull="true" />
+      <Column Name="AcceleratorDay" Type="System.String" DbType="VarChar(10) NULL" CanBeNull="true" />
+      <Column Name="WeeklyGoal" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="true" />
+      <Column Name="WeeklyWeight" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="true" />
+      <Column Name="MyTrainerEmail" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="true" />
+      <Association Name="Customer_CustomerImage" Member="CustomerImage" ThisKey="Id" OtherKey="CustomerId" Type="CustomerImage" Cardinality="One" />
+      <Association Name="Customer_Menu" Member="Menus" ThisKey="Id" OtherKey="CustomerId" Type="Menu" />
+      <Association Name="Customer_Meal" Member="Meals" ThisKey="Id" OtherKey="CustomerId" Type="Meal" />
+      <Association Name="Customer_ItemAdd" Member="ItemAdds" ThisKey="Id" OtherKey="CustomerId" Type="ItemAdd" />
+      <Association Name="Customer_DiaryEntry" Member="DiaryEntries" ThisKey="Id" OtherKey="CustomerId" Type="DiaryEntry" />
+      <Association Name="Customer_TrainingDiary" Member="TrainingDiaries" ThisKey="Id" OtherKey="iCustomerId" Type="TrainingDiary" />
+      <Association Name="Customer_CustomerTraining" Member="CustomerTrainings" ThisKey="Id" OtherKey="CustomerId" Type="CustomerTraining" />
+      <Association Name="Customer_CustomerWeight" Member="CustomerWeights" ThisKey="Id" OtherKey="CustomerId" Type="CustomerWeight" />
+      <Association Name="Customer_WeeklyTrainingSummary" Member="WeeklyTrainingSummaries" ThisKey="Id" OtherKey="iCustomerID" Type="WeeklyTrainingSummary" />
+      <Association Name="Customer_CustomerReferral" Member="CustomerReferrals" ThisKey="Id" OtherKey="iCustomerID" Type="CustomerReferral" />
+      <Association Name="Customer_WeeklyAccelDaySummary" Member="WeeklyAccelDaySummaries" ThisKey="Id" OtherKey="CustomerId" Type="WeeklyAccelDaySummary" />
+      <Association Name="Customer_DailyFoodDiarySummary" Member="DailyFoodDiarySummaries" ThisKey="Id" OtherKey="CustomerId" Type="DailyFoodDiarySummary" />
+      <Association Name="Customer_ShareDetail" Member="ShareDetails" ThisKey="Id" OtherKey="iCustomerId" Type="ShareDetail" />
+      <Association Name="Customer_FavouriteFoodItem" Member="FavouriteFoodItems" ThisKey="Id" OtherKey="MemberId" Type="FavouriteFoodItem" />
+      <Association Name="Customer_CustomerMood" Member="CustomerMoods" ThisKey="Id" OtherKey="CustomerId" Type="CustomerMood" />
+      <Association Name="Customer_CustomerPreference" Member="CustomerPreferences" ThisKey="Id" OtherKey="CustomerId" Type="CustomerPreference" />
+      <Association Name="Customer_CustomerProgressPhoto" Member="CustomerProgressPhotos" ThisKey="Id" OtherKey="CustomerId" Type="CustomerProgressPhoto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerTraining" Member="CustomerTrainings">
+    <Type Name="CustomerTraining">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WeekDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WhenAMPM" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Part" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Exercise" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Customer_CustomerTraining" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerWeight" Member="CustomerWeights">
+    <Type Name="CustomerWeight">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WeightDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="IsOfficial" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bIsMetric" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Customer_CustomerWeight" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClubVisionPreSubs" Member="ClubVisionPreSubs">
+    <Type Name="ClubVisionPreSub">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WeeklyTrainingSummary" Member="WeeklyTrainingSummaries">
+    <Type Name="WeeklyTrainingSummary">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iActualHardCardio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iActualWeights" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iActualTotCardio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iHardCardioReq" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeightsReq" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iTotCardioReq" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bHardCardioAchieved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bWeightsAchieved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bTotCardioAchieved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dDateSaved" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_WeeklyTrainingSummary" Member="Customer" ThisKey="iCustomerID" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerReferral" Member="CustomerReferrals">
+    <Type Name="CustomerReferral">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cRefName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cRefEmailAddress" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cMobileNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cChosenGift" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="iChosenStudio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cChosenStudio" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="dDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_CustomerReferral" Member="Customer" ThisKey="iCustomerID" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EbookDownloader" Member="ReadySetGoDownloaders">
+    <Type Name="ReadySetGoDownloader">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateCaptured" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WeeklyAccelDaySummary" Member="WeeklyAccelDaySummaries">
+    <Type Name="WeeklyAccelDaySummary">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dAcceleratorDay" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="bComplete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_WeeklyAccelDaySummary" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MealFromBrightCove" Member="MealFromBrightCoves">
+    <Type Name="MealFromBrightCove">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MealId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VideoId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrlOri" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DownloadPDF" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="VideoAddress" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Meal_MealFromBrightCove" Member="Meal" ThisKey="MealId" OtherKey="Id" Type="Meal" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailyFoodDiarySummary" Member="DailyFoodDiarySummaries">
+    <Type Name="DailyFoodDiarySummary">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dWhen" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bComplete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCaptured" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_DailyFoodDiarySummary" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MacroCalculator" Member="MacroCalculators">
+    <Type Name="MacroCalculator">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cExercise" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fKGs" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fCho" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fPtn" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fFat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fKJs" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="iExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cField" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrainingDiaryExtra" Member="TrainingDiaryExtras">
+    <Type Name="TrainingDiaryExtra">
+      <Column Name="iId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrainingDiaryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fCho" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fPtn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fFat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fKJs" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="TrainingDiary_TrainingDiaryExtra" Member="TrainingDiary" ThisKey="TrainingDiaryId" OtherKey="iId" Type="TrainingDiary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MotivationalQuotes" Member="MotivationalQuotes">
+    <Type Name="MotivationalQuote">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iMsgId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cMotivationalMsg" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareDetail" Member="ShareDetails">
+    <Type Name="ShareDetail">
+      <Column Name="iId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iShareType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iMenuId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iMealId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dWhen" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dDateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="iCopied" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iViewed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cCode" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="iStudioId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bIsTrainer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="iShareTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ShareDetail_ShareEntry" Member="ShareEntries" ThisKey="cCode" OtherKey="cCode" Type="ShareEntry" />
+      <Association Name="Customer_ShareDetail" Member="Customer" ThisKey="iCustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareEntry" Member="ShareEntries">
+    <Type Name="ShareEntry">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FromMealId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FromMenuId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cCode" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Item_ShareEntry" Member="Item" ThisKey="ItemId" OtherKey="Id" Type="Item" IsForeignKey="true" />
+      <Association Name="ItemAdd_ShareEntry" Member="ItemAdd" ThisKey="ItemId" OtherKey="Id" Type="ItemAdd" IsForeignKey="true" />
+      <Association Name="ShareDetail_ShareEntry" Member="ShareDetail" ThisKey="cCode" OtherKey="cCode" Type="ShareDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Countries" Member="Countries">
+    <Type Name="Country">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iso2" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="iso3" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="name_en" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="name_fr" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="name_de" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer_External" Member="Customer_Externals">
+    <Type Name="Customer_External">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cLoginName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cPassword" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="cFirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cEmail" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="cSource" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="cVoucherCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dDateCaptured" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dDateLastPayment" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="bActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bCompleteInitialState" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dFirstFullPayment" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dDateTerminate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_External_DiaryEntry" Member="DiaryEntries" ThisKey="iID" OtherKey="CustomerId" Type="DiaryEntry" />
+      <Association Name="Customer_External_TrainingDiary" Member="TrainingDiaries" ThisKey="iID" OtherKey="iCustomerId" Type="TrainingDiary" />
+      <Association Name="Customer_External_Goal" Member="Goals" ThisKey="iID" OtherKey="iCustomerID" Type="Goal" />
+      <Association Name="Customer_External_Goal1" Member="Goals1" ThisKey="iID" OtherKey="iCustomerID" Type="Goal" />
+      <Association Name="Customer_External_PayPalIPN" Member="PayPalIPNs" ThisKey="iID" OtherKey="iCustomerID" Type="PayPalIPN" />
+      <Association Name="Customer_External_PersonalProfile_External" Member="PersonalProfile_Externals" ThisKey="iID" OtherKey="iCustomerID" Type="PersonalProfile_External" Cardinality="One" />
+      <Association Name="Customer_External_Measurement" Member="Measurements" ThisKey="iID" OtherKey="iCustomerID" Type="Measurement" />
+      <Association Name="Customer_External_FavouriteFoodItem" Member="FavouriteFoodItems" ThisKey="iID" OtherKey="MemberId" Type="FavouriteFoodItem" />
+      <Association Name="Customer_External_CustomerMood" Member="CustomerMoods" ThisKey="iID" OtherKey="CustomerId" Type="CustomerMood" />
+      <Association Name="Customer_External_CustomerPreference" Member="CustomerPreferences" ThisKey="iID" OtherKey="CustomerId" Type="CustomerPreference" />
+      <Association Name="Customer_External_CustomerProgressPhoto" Member="CustomerProgressPhotos" ThisKey="iID" OtherKey="CustomerId" Type="CustomerProgressPhoto" />
+      <Association Name="Customer_External_SkipInitialStep" Member="SkipInitialSteps" ThisKey="iID" OtherKey="iCustomerID" Type="SkipInitialStep" />
+      <Association Name="Customer_External_CustomerExternalRegEnvironment" Member="CustomerExternalRegEnvironments" ThisKey="iID" OtherKey="iCustomerID" Type="CustomerExternalRegEnvironment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FormQuestion" Member="FormQuestions">
+    <Type Name="FormQuestion">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iFormID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iSectionID" Storage="_iSection" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iQuestion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cQuestion" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="iResultType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="FormQuestion_FormQuestionChildren" Member="FormQuestionChildrens" ThisKey="iID" OtherKey="ifqID" Type="FormQuestionChildren" />
+      <Association Name="Form_FormQuestion" Member="Form" ThisKey="iFormID" OtherKey="iID" Type="Form" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FormQuestionChildren" Member="FormQuestionChildrens">
+    <Type Name="FormQuestionChildren">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ifqID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cQuestion" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="FormQuestion_FormQuestionChildren" Member="FormQuestion" ThisKey="ifqID" OtherKey="iID" Type="FormQuestion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FranchiseComptetition" Member="FranchiseComptetitions">
+    <Type Name="FranchiseComptetition">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cFirstName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="cLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cAddress" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="cPhone" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="cEmail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="dDOB" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="cExperience" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cBusinessPlan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cMarketingPlan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cWhyWin" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cFinancialEvidence" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cSignedTC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Goals" Member="Goals">
+    <Type Name="Goal">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fCurrentBodyWeight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fBodyWeightGoal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fWeightLossGoal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCreated" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="iTotalCardio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iModCardio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iHardCardio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cGoalProgram" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="iActivityLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CHO" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PTN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="FAT" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bIsMetric" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="fProgressWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Customer_External_Goal" Member="Customer_External" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+      <Association Name="Customer_External_Goal1" Member="Customer_External1" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NewsletterSubscriber" Member="NewsletterSubscriberTables">
+    <Type Name="NewsletterSubscriberTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateCaptured" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PayPalIPN" Member="PayPalIPNs">
+    <Type Name="PayPalIPN">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dDateReceived" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="cRawRequest" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="cPaymentStatus" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="cTXNID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="cReceiverEmail" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="cPaymentAmount" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="cPaymentCurrency" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="cTransactionType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cPayerEmail" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="iItemNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cIpnTrackId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="cSubscriberId" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cException" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Customer_External_PayPalIPN" Member="Customer_External" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PersonalProfile_External" Member="PersonalProfile_Externals">
+    <Type Name="PersonalProfile_External">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iUmbracoNodeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cFirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cGender" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="dDOB" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="iAge" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cAddress" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cSuburb" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cState" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="iPostcode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cCountry" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cMobile" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="cHomePhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="cEmail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dDateModified" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="cBodyType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="fTotBodyTypeScore" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bIsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_External_PersonalProfile_External" Member="Customer_External" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StarShotsBday" Member="StarShotsBdays">
+    <Type Name="StarShotsBday">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cStudio" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cPhone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cEmail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cHealthPriority" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Measurements" Member="Measurements">
+    <Type Name="Measurement">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dMeasured" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="fChest" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fWaist" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fWrist" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fForeArm" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fHips" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fBodyWeight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fNutCalc" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fWaistToHipRatio" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cDesiredClothing" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="fBPSystolic" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fBPDiastolic" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cPhoto" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="bIsMetric" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_External_Measurement" Member="Customer_External" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EnumTable" Member="EnumTables">
+    <Type Name="EnumTable">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="intValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cField" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="floatValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OptGroup" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrainingDiaryPlanner_External" Member="TrainingDiaryPlanner_Externals">
+    <Type Name="TrainingDiaryPlanner_External">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iTrainingDiaryRefId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cExercise" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="iExerciseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iTargetReps" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cTargetSets" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="iActualReps" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cActualSets" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="fWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="TrainingDiary_TrainingDiaryPlanner_External" Member="TrainingDiary" ThisKey="iTrainingDiaryRefId" OtherKey="iId" Type="TrainingDiary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrainingDiaryWeightProgram" Member="TrainingDiaryWeightPrograms">
+    <Type Name="TrainingDiaryWeightProgram">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iTrainingDiaryRefId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iExValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cExercise" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="iBodyPart" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iSet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iReps" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iWeight" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iMasterSetOf" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iTypeWeightsProg" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TrainingDiary_TrainingDiaryWeightProgram" Member="TrainingDiary" ThisKey="iTrainingDiaryRefId" OtherKey="iId" Type="TrainingDiary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuickLink" Member="QuickLinks">
+    <Type Name="QuickLink">
+      <Column Name="lID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LinkUrl" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailyInspiration" Member="DailyInspirations">
+    <Type Name="DailyInspiration">
+      <Column Name="dID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="inspiration_text" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FavouriteFoodItem" Member="FavouriteFoodItems">
+    <Type Name="FavouriteFoodItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FoodItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateAdded" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int" CanBeNull="false" />
+      <Association Name="Customer_FavouriteFoodItem" Member="Customer" ThisKey="MemberId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_External_FavouriteFoodItem" Member="Customer_External" ThisKey="MemberId" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+      <Association Name="Item_FavouriteFoodItem" Member="Item" ThisKey="FoodItemId" OtherKey="Id" Type="Item" IsForeignKey="true" />
+      <Association Name="ItemAdd_FavouriteFoodItem" Member="ItemAdd" ThisKey="FoodItemId" OtherKey="Id" Type="ItemAdd" IsForeignKey="true" />
+      <Association Name="MealTime_FavouriteFoodItem" Member="MealTime" ThisKey="MealTimeId" OtherKey="Id" Type="MealTime" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerMood" Member="CustomerMoods">
+    <Type Name="CustomerMood">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="Date" CanBeNull="false" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MoodId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Mood_CustomerMood" Member="Mood" ThisKey="MoodId" OtherKey="Id" Type="Mood" IsForeignKey="true" />
+      <Association Name="Customer_CustomerMood" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_External_CustomerMood" Member="Customer_External" ThisKey="CustomerId" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+      <Association Name="MealTime_CustomerMood" Member="MealTime" ThisKey="MealTimeId" OtherKey="Id" Type="MealTime" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mood" Member="Moods">
+    <Type Name="Mood">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MoodString" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fileName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Mood_CustomerMood" Member="CustomerMoods" ThisKey="Id" OtherKey="MoodId" Type="CustomerMood" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrainingDiaryCardioProgram" Member="TrainingDiaryCardioPrograms">
+    <Type Name="TrainingDiaryCardioProgram">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iTrainingDiaryRefId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cPaceOrDistance" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="true" />
+      <Association Name="TrainingDiary_TrainingDiaryCardioProgram" Member="TrainingDiary" ThisKey="iTrainingDiaryRefId" OtherKey="iId" Type="TrainingDiary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerPreference" Member="CustomerPreferences">
+    <Type Name="CustomerPreference">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PreferenceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PrefItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_CustomerPreference" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_External_CustomerPreference" Member="Customer_External" ThisKey="CustomerId" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+      <Association Name="Preference_CustomerPreference" Member="Preference" ThisKey="PreferenceId" OtherKey="Id" Type="Preference" IsForeignKey="true" />
+      <Association Name="MealTime_CustomerPreference" Member="MealTime" ThisKey="MealTimeId" OtherKey="Id" Type="MealTime" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WeightExercise" Member="WeightExercises">
+    <Type Name="WeightExercise">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExerciseIDVOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Step" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImagePath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Preference" Member="Preferences">
+    <Type Name="Preference">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PreferenceStr" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="isTimeRequired" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="VPTonly" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isBitValue" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Association Name="Preference_CustomerPreference" Member="CustomerPreferences" ThisKey="Id" OtherKey="PreferenceId" Type="CustomerPreference" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerProgressPhoto" Member="CustomerProgressPhotos">
+    <Type Name="CustomerProgressPhoto">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProgressPhoto" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgressDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_CustomerProgressPhoto" Member="Customer" ThisKey="CustomerId" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_External_CustomerProgressPhoto" Member="Customer_External" ThisKey="CustomerId" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+      <Association Name="PhotoType_CustomerProgressPhoto" Member="PhotoType" ThisKey="PhotoTypeId" OtherKey="Id" Type="PhotoType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhotoType" Member="PhotoTypes">
+    <Type Name="PhotoType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PhotoTypeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="PhotoType_CustomerProgressPhoto" Member="CustomerProgressPhotos" ThisKey="Id" OtherKey="PhotoTypeId" Type="CustomerProgressPhoto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EnergyCalculatorFood" Member="EnergyCalculatorFoods">
+    <Type Name="EnergyCalculatorFood">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FormDetails" Member="FormDetails">
+    <Type Name="FormDetail">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iFormID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iSectionID" Storage="_iSection" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cTitle" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="cBlurb" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="cInterpretation" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dDateAdded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Form_FormDetail" Member="Form" ThisKey="iFormID" OtherKey="iID" Type="Form" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Form" Member="Forms">
+    <Type Name="Form">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cFormName" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="bActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Form_FormQuestion" Member="FormQuestions" ThisKey="iID" OtherKey="iFormID" Type="FormQuestion" />
+      <Association Name="Form_FormDetail" Member="FormDetails" ThisKey="iID" OtherKey="iFormID" Type="FormDetail" />
+      <Association Name="Form_FormResult" Member="FormResults" ThisKey="iID" OtherKey="iFormID" Type="FormResult" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FormResult" Member="FormResults">
+    <Type Name="FormResult">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iFormID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iQuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bResult" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fResult" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cResult" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="iResult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iSectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCaptured" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Form_FormResult" Member="Form" ThisKey="iFormID" OtherKey="iID" Type="Form" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MacroCalculatorAlcohol" Member="MacroCalculatorAlcohols">
+    <Type Name="MacroCalculatorAlcohol">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="fKGs" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="iHourExerMinutes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="imageUrl" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PayPalLink" Member="PayPalLinks">
+    <Type Name="PayPalLink">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cPayPalLink" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="PayPalLink_VVTPromotionalCode" Member="VVTPromotionalCodes" ThisKey="iID" OtherKey="iPayPalID" Type="VVTPromotionalCode" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VVTPromotionalCode" Member="VVTPromotionalCodes">
+    <Type Name="VVTPromotionalCode">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="iPayPalID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCaptured" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="cNote" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="PayPalLink_VVTPromotionalCode" Member="PayPalLink" ThisKey="iPayPalID" OtherKey="iID" Type="PayPalLink" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemAlcohol" Member="ItemAlcohols">
+    <Type Name="ItemAlcohol">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="KJs" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keep" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="imageUrl" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrainingDiaryExtraMinutes" Member="TrainingDiaryExtraMinutes">
+    <Type Name="TrainingDiaryExtraMinute">
+      <Column Name="iId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iTrainingDiaryRefId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bIsAdd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="iMinutes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TrainingDiary_TrainingDiaryExtraMinute" Member="TrainingDiary" ThisKey="iTrainingDiaryRefId" OtherKey="iId" Type="TrainingDiary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SessionExercise" Member="SessionExercises">
+    <Type Name="SessionExercise">
+      <Column Name="SessionExerciseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExerciseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Group]" Member="Group" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SwapID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sets" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="IsRemoved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SessionRecord" Member="SessionRecords">
+    <Type Name="SessionRecord">
+      <Column Name="SessionRecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SessionExerciseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubExercise" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Repetition" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Method" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Time" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intensity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Duration" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Pace" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Session" Member="Sessions">
+    <Type Name="Session">
+      <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrainingDiaryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudioID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Starttime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramGoal" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramTotal" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TrainingDiary_Session" Member="TrainingDiary" ThisKey="TrainingDiaryID" OtherKey="iId" Type="TrainingDiary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SkipInitialSteps" Member="SkipInitialSteps">
+    <Type Name="SkipInitialStep">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iLastStep" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dDateModified" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_External_SkipInitialStep" Member="Customer_External" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerExternalRegEnvironment" Member="CustomerExternalRegEnvironments">
+    <Type Name="CustomerExternalRegEnvironment">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iCustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cBrowserType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cBrowserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cBrowserVersion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cPlatform" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="bSupportsCookies" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cSupportsJavaScript" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="bSupportJavaApplets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bSupportsActivexControls" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cSupportsJavascriptVersion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dDateLastRetry" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="iCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_External_CustomerExternalRegEnvironment" Member="Customer_External" ThisKey="iCustomerID" OtherKey="iID" Type="Customer_External" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BusinessPlaza10for2PT" Member="BusinessPlaza10for2PTs">
+    <Type Name="BusinessPlaza10for2PT">
+      <Column Name="iID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cSuburb" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cEmail" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cMobile" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="iStudio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CopyDiaryMealToDate" Method="CopyDiaryMealToDate">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="whendest" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SaveDiaryMealAsMeal" Method="SaveDiaryMealAsMeal">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyMealToDate" Method="CopyMealToDate">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyMenuToDate" Method="CopyMenuToDate">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="menuId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SaveDiaryDayAsMenu" Method="SaveDiaryDayAsMenu">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteDiaryEntry" Method="DeleteDiaryEntry">
+    <Parameter Name="diaryEntryId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EditAmount" Method="EditAmount">
+    <Parameter Name="diaryEntryId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="amount" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetItemsByRecent" Method="GetItemsByRecent">
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="results" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetItemsByRecentResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetItemsByCopyPaste" Method="GetItemsByCopyPaste">
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="GetItemsByCopyPasteResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Menu_EditAmount" Method="Menu_EditAmount">
+    <Parameter Name="menuItemId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="amount" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteMenuItem" Method="DeleteMenuItem">
+    <Parameter Name="menuItemId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SaveMenuMealAsMeal" Method="SaveMenuMealAsMeal">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="menuId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetMealsByKeyword" Method="GetMealsByKeyword">
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="GetMealsByKeywordResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsByKeywordForCustomer" Method="GetMealsByKeywordForCustomer">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="GetMealsByKeywordForCustomerResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsByRecent" Method="GetMealsByRecent">
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="isVisionRecommended" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="results" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMealsByRecentResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="VideoId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PDFAddress" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DeleteMeal" Method="DeleteMeal">
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteMenu" Method="DeleteMenu">
+    <Parameter Name="menuId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyItemToDateMealTime" Method="CopyItemToDateMealTime">
+    <Parameter Name="diaryEntryId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Meal_EditAmount" Method="Meal_EditAmount">
+    <Parameter Name="mealItemId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="amount" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteMealItem" Method="DeleteMealItem">
+    <Parameter Name="mealItemId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.MoveMealToMealTime" Method="MoveMealToMealTime">
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="from_when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyMealToMenu" Method="CopyMealToMenu">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="menuId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetMenusByRecent" Method="GetMenusByRecent">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="isVisionRecommended" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="results" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMenusByRecentResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenusByKeyword" Method="GetMenusByKeyword">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="GetMenusByKeywordResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.AddTrainingDairyWeek" Method="AddTrainingDairyWeek">
+    <Parameter Name="icustomerid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iweeknum" Type="System.Int32" DbType="Int" />
+    <Parameter Name="newweeknum" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SaveTrainingDiary" Method="SaveTrainingDiary">
+    <Parameter Name="iid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="icustomerid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iweeknum" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iweekday" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ampm" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cexercise" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="idur" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iexertype" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iintens" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ddatecreated" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="bCompleteState" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="intval" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fromvos" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="exval" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FoodDiaryEntries" Method="FoodDiaryEntries">
+    <Parameter Name="iCustomerID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dWhen" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="iMealTimeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="FoodDiaryEntriesResult">
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[when]" Member="when" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="Serve" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetItemsByKeyword" Method="GetItemsByKeyword">
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(1020)" />
+    <Parameter Name="iCustomerId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetItemsByKeywordResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FoodItemRequest" Method="FoodItemRequest">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="request" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="isitemadd" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetItemsByMacronutrients" Method="GetItemsByMacronutrients">
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="customerID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetItemsByMacronutrientsResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keep" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsByNameOrder" Method="GetMealsByNameOrder">
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="isVisionRecommended" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="results" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMealsByNameOrderResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsByMacronutrients" Method="GetMealsByMacronutrients">
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMealsByMacronutrientsResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetEmptyDate" Method="GetEmptyDate">
+    <Parameter Name="startdate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="enddate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="custId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetEmptyDateResult">
+      <Column Name="dt" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenusByMacronutrients" Method="GetMenusByMacronutrients">
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMenusByMacronutrientsResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMenusForCustomer" Method="GetMenusForCustomer">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMenusForCustomerResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="ItemCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MenuItems" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TripleDot" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CopyDiaryEntryToShareEntry" Method="CopyDiaryEntryToShareEntry">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyMealToShareEntry" Method="CopyMealToShareEntry">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyMenuToShareEntry" Method="CopyMenuToShareEntry">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="menuId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetMenusByMacro_MenuPage" Method="GetMenusByMacro_MenuPage">
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="CustomerID" Parameter="customerID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="range" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="GetMenusByMacro_MenuPageResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,0)" CanBeNull="true" />
+      <Column Name="ItemCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MenuItems" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TripleDot" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CopyShareEntryMenuDPToDiaryEntry" Method="CopyShareEntryMenuDPToDiaryEntry">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryMealToDiaryEntry" Method="CopyShareEntryMealToDiaryEntry">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="mealtimeid" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryToMeal" Method="CopyShareEntryToMeal">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="code" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryToMenu" Method="CopyShareEntryToMenu">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="code" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryMealToDiaryEntry4External" Method="CopyShareEntryMealToDiaryEntry4External">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="mealtimeid" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryMenuDPToDiaryEntry4External" Method="CopyShareEntryMenuDPToDiaryEntry4External">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryToMeal4External" Method="CopyShareEntryToMeal4External">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="code" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyShareEntryToMenu4External" Method="CopyShareEntryToMenu4External">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="code" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Get_ExtMember" Method="Get_ExtMember">
+    <Parameter Name="iExtMemberNo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Get_ExtMemberResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StreetAddress" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Postcode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DaytimePhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Trainer" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Studio" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Carb" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="goal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastGS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NextGS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="GoalWt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CurrentWt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StartWt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProgressWt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Cardio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Weights" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CardioLM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CardioHard" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CWRatio" Type="System.String" DbType="VarChar(53)" CanBeNull="true" />
+      <Column Name="StudioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrainerContact" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="AcceleratorDay" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="WeeklyWeight" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WeeklyGoal" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="MyTrainerEmail" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCustomerWeight" Method="GetCustomerWeight">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetCustomerWeightResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WeightDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="IsOfficial" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GenerateWeeklyExercise" Method="GenerateWeeklyExercise">
+    <Parameter Name="iCustomerID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GenerateWeeklyExerciseResult">
+      <Column Name="Exercise" Type="System.String" DbType="VarChar(65)" CanBeNull="true" />
+      <Column Name="WhenAMPM" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="WeekDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CopyMenuToDateFromCaptain" Method="CopyMenuToDateFromCaptain">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="menuId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="when" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CopyDiaryDayToDate" Method="CopyDiaryDayToDate">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="whenfrom" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="whento" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.VVTWS_FoodDiary_List" Method="VVTWS_FoodDiary_List">
+    <Parameter Name="iMemberId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dTodayDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="mid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="VVTWS_FoodDiary_ListResult">
+      <Column Name="FoodDiaryEntryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MealID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsMeal" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IsRecommended" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CarbohydrateTotal" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="CarbohydrateTotalNoRound" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="ProteinTotalNoRound" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="FatTotalNoRound" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="CarbohydratePerServe" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ProteinPerServe" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="FatPerServe" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="NumServed" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeSize" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MealTimeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromMealId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromMenuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromItemsAdd" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.RunMondayKPIStats" Method="RunMondayKPIStats">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="RunMondayKPIStatsResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(140)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_extVVTCustSources" Method="Statistic_extVVTCustSources">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_extVVTCustSourcesResult">
+      <Column Name="totCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cSource" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_extVVTCustList_InquiryOnly" Method="Statistic_extVVTCustList_InquiryOnly">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_extVVTCustList_InquiryOnlyResult">
+      <Column Name="email" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[Statistic_extVVTCustList_Cancel ]" Method="Statistic_extVVTCustList_Cancel">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_extVVTCustList_Cancel_Result">
+      <Column Name="email" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="datecanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_ShareStat" Method="Statistic_ShareStat">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_ShareStatResult">
+      <Column Name="title" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="totalShares" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="byClient" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="byTrainer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="toFacebook" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_ShareStat_TopStudios" Method="Statistic_ShareStat_TopStudios">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_ShareStat_TopStudiosResult">
+      <Column Name="studioname" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_extVVTCustCodes" Method="Statistic_extVVTCustCodes">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_extVVTCustCodesResult">
+      <Column Name="totCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cVoucherCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_extVVTCustomer" Method="Statistic_extVVTCustomer">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_extVVTCustomerResult">
+      <Column Name="title" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="totalInquiry" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="newClients" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cancelledClients" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totalClients" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lengthStay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reftoVPT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reftoVVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ebookDownloader" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="newsletter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_extVVTClientAmountPay" Method="Statistic_extVVTClientAmountPay">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="Statistic_extVVTClientAmountPayResult">
+      <Column Name="Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastPaymentAmt" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Statistic_DiaryDaysCaptain" Method="Statistic_DiaryDaysCaptain">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="Statistic_DiaryDaysCaptainResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CheckQuestionnarieCompletion" Method="CheckQuestionnarieCompletion">
+    <Parameter Name="iMemberId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iQId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="CheckQuestionnarieCompletionResult">
+      <Column Name="" Member="Column1" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UpdateMeal" Method="UpdateMeal">
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="serving" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Meal_EditPortion" Method="Meal_EditPortion">
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="amount" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetMealsForCustomer" Method="GetMealsForCustomer">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMealsForCustomerResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="VideoId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PDFAddress" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PDFAddress1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ImageUrl1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ItemCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MealTagPictures" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MealItems" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TripleDot" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="MealDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CopyMealToDateMealTime" Method="CopyMealToDateMealTime">
+    <Parameter Name="mealId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="from_when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="from_mealtimeid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="to_when" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="mealTimeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="CopyMealToDateMealTimeResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsForCustomer_Search" Method="GetMealsForCustomer_Search">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <ElementType Name="GetMealsForCustomer_SearchResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PDFAddress" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ItemCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MealItems" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TripleDot" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="MealDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_GetScreenDetails" Method="App_GetScreenDetails">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cScreen" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="iCatID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_GetScreenDetailsResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCustomerTrainingWeekReportOrder" Method="GetCustomerTrainingWeekReportOrder">
+    <Parameter Name="weekreportday" Type="System.Int32" DbType="Int" />
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetCustomerTrainingWeekReportOrderResult">
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WeekDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WhenAMPM" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Part" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Exercise" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTrainingDiaryW0InOrder" Method="GetTrainingDiaryW0InOrder">
+    <Parameter Name="weekreportday" Type="System.Int32" DbType="Int" />
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTrainingDiaryW0InOrderResult">
+      <Column Name="iCustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iWeekDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iAMPM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cExercise" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="iDuration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iExerType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iIntensity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dDateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="bCompleteState" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="intValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bFromVOS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="iExValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bIsExtra" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bIsWPExAttached" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bIsCardioHasProg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="iWeekStart" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iSessionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.VOSWS_GetTrainingStartDate" Method="VOSWS_GetTrainingStartDate">
+    <Parameter Name="iCustomerID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dDateinput" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="VOSWS_GetTrainingStartDateResult">
+      <Column Name="" Member="Column1" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDateFromWeekNumber" Method="GetDateFromWeekNumber">
+    <Parameter Name="week" Type="System.Int32" DbType="Int" />
+    <Parameter Name="year" Type="System.Int32" DbType="Int" />
+    <Parameter Name="day" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDateFromWeekNumberResult">
+      <Column Name="" Member="Column1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DeleteTrainingItemRow" Method="DeleteTrainingItemRow">
+    <Parameter Name="iCustomerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Iid" Parameter="iid" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteLastTrainingItemRow" Method="DeleteLastTrainingItemRow">
+    <Parameter Name="iCustomerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Iid" Parameter="iid" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteShareEntryRecords" Method="DeleteShareEntryRecords">
+    <Parameter Name="cCode" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.App_4_4_GetExercisesWithBodyParts" Method="App_4_4_GetExercisesWithBodyParts">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cType" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="iExerciseID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_4_4_GetExercisesWithBodyPartsResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BodyPart" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ExerciseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExerciseName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_GetWeightExerciseDetails" Method="App_GetWeightExerciseDetails">
+    <Parameter Name="iWeightExerciseID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_GetWeightExerciseDetailsResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExerciseIDVOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Step" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImagePath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_5_1_GetWeightSession" Method="App_5_1_GetWeightSession">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iTrainingDiaryId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_5_1_GetWeightSessionResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WorkoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkoutType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WorkoutName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutDetail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseIcon" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseDetail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseSets" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_5_5_1_GetChallenges" Method="App_5_5_1_GetChallenges">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_5_5_1_GetChallengesResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ChallengeCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ChallengeCategoryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_5_5_2_GetChallengeSession" Method="App_5_5_2_GetChallengeSession">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iTrainingDiaryId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iChallengCategoryID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_5_5_2_GetChallengeSessionResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WorkoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkoutType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WorkoutName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutDetail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseIcon" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseDetail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseSets" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.VOSWS_UpdateWeeklyReport" Method="VOSWS_UpdateWeeklyReport">
+    <Parameter Name="iCudtomerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dateStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="iType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fChoOrHardCardio" Type="System.Double" DbType="Float" />
+    <Parameter Name="fPtnOrTotHardCar" Type="System.Double" DbType="Float" />
+    <Parameter Name="fFatOrWeight" Type="System.Double" DbType="Float" />
+    <Parameter Name="fTotCardioReq" Type="System.Double" DbType="Float" />
+    <Parameter Name="iUpdate" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.App_5_4_GetCardioSession" Method="App_5_4_GetCardioSession">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iTrainingDiaryId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_5_4_GetCardioSessionResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WorkoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkoutType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WorkoutName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutDetail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseIcon" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseDetail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseSets" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDateFromWeekNumberResult" Method="GetDateFromWeekNumberResult">
+    <Parameter Name="week" Type="System.Int32" DbType="Int" />
+    <Parameter Name="year" Type="System.Int32" DbType="Int" />
+    <Parameter Name="day" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dayout" Type="System.DateTime" DbType="DateTime" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.App_GetExercises" Method="App_GetExercises">
+    <Parameter Name="iTrainingDiaryID" Parameter="trainingDiaryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cSessType" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="iProgramID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="bSummary" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="dTraining" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="iClientID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_GetExercisesResult">
+      <Column Name="sessionsection" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="sessionid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trainingdiaryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="screen" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="workout" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="subworkouttype" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workoutname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="workoutdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="workoutnotes" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="workoutcomplete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="screensection" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="screenid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="screenname" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="screennotes" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="screenlabel" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="screenmeasure" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="screenmeasurelabel" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="screentotal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="rowsection" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="rowid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rowtimer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="exercisesection" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="exerciseline" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="exerciseicon" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="exercisename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="exerciseid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="exerciselength" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="exercisemeasure" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="sessionexerciseid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="recordsection" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="recordid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="recordupdated" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reps" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="weight" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="duration" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="intensity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="pace" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="time" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="distance" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="entrylabel" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionrecordid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_GetSession" Method="App_GetSession">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cScreen" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="iTrainingDiaryId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iChallengCategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dTraining" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="App_GetSessionResult">
+      <Column Name="Screen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WorkoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkoutType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WorkoutName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SubWorkoutType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutDetail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutNote" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseIcon" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseDetail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseSets" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkoutExerciseNote" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="WorkoutExerciseLastNote" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionExerciseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_UpdateSession" Method="App_UpdateSession">
+    <Parameter Name="iMemberNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cSessType" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="iProgramID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iTrainingDiaryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iSessionID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iSessionExID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iExerciseID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cComment" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="App_UpdateSessionsResult">
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SkipInitialStep" Method="SkipInitialStep">
+    <Parameter Name="iCustomerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="output" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.App_UpdateExercises" Method="App_UpdateExercises">
+    <Parameter Name="iSessionID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iSessionRecordID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iSessionExerciseID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="iReps" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mWeight" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="cPace" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="cTime" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="cDistance" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="cProgramTotal" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="cComment" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="App_UpdateExercisesResult">
+      <Column Name="sessionsection" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="sessionid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trainingdiaryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="screen" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="workout" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="subworkouttype" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workoutname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="workoutdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="workoutnotes" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="workoutcomplete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="screensection" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="screenid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="screenname" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="screennotes" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="screenlabel" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="screenmeasure" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="screenmeasurelabel" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="screentotal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="rowsection" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="rowid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rowtimer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="exercisesection" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="exerciseline" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="exerciseicon" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="exercisename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="exerciseid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="exerciselength" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="exercisemeasure" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="sessionexerciseid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="recordsection" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="recordid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="recordupdated" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reps" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="weight" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="duration" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="intensity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="pace" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="time" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="distance" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="entrylabel" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionrecordid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsByAdvancedSearch" Method="GetMealsByAdvancedSearch">
+    <Parameter Name="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="isGlutenFree" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isVegan" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isVegetarian" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isLactoseFree" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isSeafoodFree" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isNutFree" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="GetMealsByAdvancedSearchResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CarbTotal" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ProteinTotal" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="FatTotal" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetItemsByAdvancedSearch" Method="GetItemsByAdvancedSearch">
+    <Parameter Name="iCustomerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(1020)" />
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="categoryId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetItemsByAdvancedSearchResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Brand" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Carbohydrate" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Protein" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fat" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeAmount" Type="System.Decimal" DbType="Decimal(16,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ServeUnit" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="FromItemsAdd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMealsForCustomerSearchWithMealTag" Method="GetMealsForCustomerSearchWithMealTag">
+    <Parameter Name="CustomerId" Parameter="customerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="keyword" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="carbohydrate" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="protein" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="fat" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="isGlutenFree" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isVegan" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isVegetarian" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isLactoseFree" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isSeafoodFree" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="isNutFree" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="GetMealsForCustomerSearchWithMealTagResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PDFAddress" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CarbohydrateSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ProteinSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="FatSum" Type="System.Decimal" DbType="Decimal(28,2)" CanBeNull="true" />
+      <Column Name="ItemCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MealTagPictures" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MealItems" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TripleDot" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="MealDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_GetMealTime" Method="App_GetMealTime">
+    <Parameter Name="cDateTime" Type="System.String" DbType="VarChar(14)" />
+    <ElementType Name="App_GetMealTimeResult">
+      <Column Name="MealTimeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MealTimeName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.App_GetExerciseDetails" Method="App_GetExerciseDetails">
+    <Parameter Name="cExerciseType" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="iExerciseID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="App_GetExerciseDetailsResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExerciseType" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="ExerciseIDVOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MuscleGroup" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Difficulty" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Step" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImagePath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SkipICRestriction" Method="SkipICRestriction">
+    <Parameter Name="iCustomerID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

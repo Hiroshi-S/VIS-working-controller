@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MonthlyCampaign.ascx.cs" Inherits="VisionPersonalTrainingProject.usercontrols.general.MonthlyCampaign" %>
+<asp:Literal ID="Literal1" runat="server"></asp:Literal>

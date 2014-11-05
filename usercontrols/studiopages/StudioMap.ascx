@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StudioMap.ascx.cs" Inherits="VisionPersonalTrainingProject.usercontrols.studiopages.StudioMap" %>
+<div id="map1" style="width: 284px; height: 244px"></div>
