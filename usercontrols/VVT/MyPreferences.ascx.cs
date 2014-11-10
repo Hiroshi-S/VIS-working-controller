@@ -41,12 +41,15 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
 
                 nutpref += "<tr><td>" + preference.PreferenceStr + "</td>";
 
-                if(preference.isBitValue == false)//currently it returns only food diary pref value
+                if(preference.isBitValue == false && isVPTOnly)//currently it returns only food diary pref value
                 {
-                    
+                    var custCountry = (from cusctr in cvdc.Customers
+                                       where cusctr.Id == (int)Session["MemberNo"]
+                                       select cusctr.State).SingleOrDefault();
+
                     nutpref += "<td><div class=\"switch-select\"><select id=\"foodDiaryPref\" data-id=\"" + preference.Id + "\"><option value=\"1\">All Foods</option>" +
-                                "<option value=\"2\">Australian</option>" +
-                                "<option value=\"3\">New Zealand   </option>" +
+                        (custCountry != "NZ" ? "<option value=\"2\">Australian</option>" :
+                            "<option value=\"3\">New Zealand   </option>") +     
                                 "</select></div></td>";
 
                     if (singleOrDefault != null)
