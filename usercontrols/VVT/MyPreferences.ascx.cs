@@ -143,7 +143,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
 
 
             /*Food Diary Preferences*/
-            string preferences = "";
+
             var pref = (from prf in cvdc.Preferences
                         where prf.Type == 4 && prf.isActive
                         select prf);

@@ -1952,7 +1952,7 @@
             Print
         </div>
     </div>
-    <div onclick="printShoppingList();">
+    <div onclick="printShoppingListDateSelection();">
         <div class="fcimage">
             <img src="/images/icons/web/shoppingcart.png" style="cursor: pointer" alt="Shopping List" />
         </div>

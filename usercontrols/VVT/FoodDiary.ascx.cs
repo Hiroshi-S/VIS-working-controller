@@ -63,36 +63,45 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
                         captainIconWeek.Style["display"] = "none";
                     }
 
-                    ClubVisionDataContext cvdc = new ClubVisionDataContext();
-
-                    var dateStartVoss = cvdc.VOSWS_GetTrainingStartDate((int)Session["MemberNo"], _when).ToList();
-
-                    foreach (VOSWS_GetTrainingStartDateResult gtsdr in dateStartVoss)
+                    literalWeek.Text = startDate.ToLongDateString(); //tambahan
+                    try//tambahan
                     {
-                        if (gtsdr.Column1 != null && (Request.QueryString["when"] == null)) 
-                            startDate = (DateTime)gtsdr.Column1;
-                    }
-                    
-                    //literalWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
-                    literalWeek.Text = startDate.ToLongDateString();
+                        ClubVisionDataContext cvdc = new ClubVisionDataContext();
 
-                    if (Session["MemberType"].Equals("VPT") && 
-                        (startDate == dateStartVoss.Take(1).SingleOrDefault().Column1))
-                    {
-                        FirstLoadNotifLiteral.Text = "<br/><h2 style=\"color:#999999;width:575px; height:35px;display:inline-table;\">Your week with your trainer starts on <span style=\"color:#002147;\">" + startDate.ToString("dddd") + "</span></h2>";
-                        
-                        _isTrainingWeek = true;
+                        var dateStartVoss = cvdc.VOSWS_GetTrainingStartDate((int)Session["MemberNo"], _when).ToList();
 
-                        if(Session["FromTrainer"].Equals("YES"))
+                        foreach (VOSWS_GetTrainingStartDateResult gtsdr in dateStartVoss)
                         {
-                            if (Request.QueryString["when"] == null)//pushback one week earlier
+                            if (gtsdr.Column1 != null && (Request.QueryString["when"] == null))
+                                startDate = (DateTime)gtsdr.Column1;
+                        }
+
+                        //literalWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
+                        literalWeek.Text = startDate.ToLongDateString();
+
+                        if (Session["MemberType"].Equals("VPT") &&
+                        (startDate == dateStartVoss.Take(1).SingleOrDefault().Column1))
+                        {
+                            FirstLoadNotifLiteral.Text = "<br/><h2 style=\"color:#999999;width:575px; height:35px;display:inline-table;\">Your week with your trainer starts on <span style=\"color:#002147;\">" + startDate.ToString("dddd") + "</span></h2>";
+
+                            _isTrainingWeek = true;
+
+                            if (Session["FromTrainer"].Equals("YES"))
                             {
-                                Response.Redirect("/club-vision/my-eating/food-diary/?when=" + startDate.AddDays(-7).ToString("dd/MM/yyyy") + "&tab=week");
+                                if (Request.QueryString["when"] == null)//pushback one week earlier
+                                {
+                                    Response.Redirect("/club-vision/my-eating/food-diary/?when=" + startDate.AddDays(-7).ToString("dd/MM/yyyy") + "&tab=week");
+                                }
+                                FirstLoadNotifLiteral.Text +=
+                                    "<button onclick=\"updateWeeklyReportFD();return false;\" >Update Weekly Report</button>";
                             }
-                            FirstLoadNotifLiteral.Text +=
-                                "<button onclick=\"updateWeeklyReportFD();return false;\" >Update Weekly Report</button>";
                         }
                     }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    
 
                     UpdateViewWeek(startDate);
                 }
