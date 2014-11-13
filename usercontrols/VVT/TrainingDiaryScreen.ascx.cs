@@ -4,6 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+/*
+    [1] 269, 270, 271 added to exclude list(App's workout sessions:Weight Session,Cardio Session,Cardio Challenge) Hiroshi
+*/
+
 namespace VisionPersonalTrainingProject.usercontrols.VVT
 {
     public partial class TrainingDiaryScreen : System.Web.UI.UserControl
@@ -11,9 +15,9 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
         private DateTime _when = System.DateTime.Today;
         private int _weeknumber = 0;
         private static List<int?> _cardiosWithProg;
-        
-        private readonly List<int> _vvtExList = new List<int>() { 257, 256, 250, 249, 248, 231, 232, 233, 234, 235, 237, 238, 222, 223, 224 };
-        private readonly List<int> _vvtIntList = new List<int>() { 54, 55, 56, 57, 242, 243, 244, 246, 252, 253, 259 };
+
+        private readonly List<int> _vvtExList = new List<int>() { 257, 256, 250, 249, 248, 231, 232, 233, 234, 235, 237, 238, 222, 223, 224, 269, 270, 271 };//[1]
+        private readonly List<int> _vvtIntList = new List<int>() { 54, 55, 56, 57, 242, 243, 244, 246, 252, 253, 259, 269, 270, 271 };//[1]
 
         private DateTime _startDay;
         private int _intStartDay = 1;
@@ -66,7 +70,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             Response.Redirect("/club-vision/my-exercise/training-diary/?when=" + _when.ToString("dd/MM/yyyy") + "&fromBPDay=true");
 
         }
-        
+
         protected void BdpDaySelectionChangeStartDay(object sender, EventArgs e)
         {
             _when = bdpDay.SelectedDate;
@@ -95,7 +99,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
                     return "";
             }
         }
-        
+
         protected void GenerateTDUserControls(int weekNum)
         {
             //currentDate.Value = when.ToString("dd/MM/yyyy");
@@ -155,9 +159,9 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
 
 
                 var tdsThisWeek = (from dt in cvdc.TrainingDiaries
-                                    where dt.iCustomerId == (int)Session["MemberNo"]
-                                    where dt.iWeekNumber == weekNum
-                                    select dt).OrderBy(x => x.intValue);
+                                   where dt.iCustomerId == (int)Session["MemberNo"]
+                                   where dt.iWeekNumber == weekNum
+                                   select dt).OrderBy(x => x.intValue);
 
                 if (Session["MemberType"].Equals("VPT"))
                 {
@@ -274,10 +278,10 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
 
             int currentDayOfWeek = (int)(when.DayOfWeek); //because c# day of week start from 0 - 6 
             if (currentDayOfWeek == 0) { currentDayOfWeek = 7; } //validation for sunday
-            
+
             _weeknumber = GetWeekNumber(when);
-            
-            if(Session["MemberType"].Equals("VVT"))
+
+            if (Session["MemberType"].Equals("VVT"))
             {
                 _startDay = GetFirstDayOfWeek(_weeknumber);
             }
@@ -308,7 +312,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             }
             currentWeekNumber.Value = _weeknumber.ToString(CultureInfo.InvariantCulture);
             literalDay.Text = _startDay.ToLongDateString();
-            if(Request.QueryString["when"] != null)
+            if (Request.QueryString["when"] != null)
             {
                 literalDay.Text = Convert.ToDateTime(Request.QueryString["when"]).ToLongDateString();
             }
@@ -319,7 +323,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
 
             if (Request.QueryString["fromBPDay"] != null)
             {
-                UpdateSqlTrainingData((int)Session["MemberNo"], _weeknumber+1, (string)Session["MemberType"], _intStartDay, _startDay.AddDays(7));
+                UpdateSqlTrainingData((int)Session["MemberNo"], _weeknumber + 1, (string)Session["MemberType"], _intStartDay, _startDay.AddDays(7));
             }
 
             GenerateTDUserControls(_weeknumber);
@@ -364,13 +368,13 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
                                 where bcs.cField == 1
                                 select bcs.intValue).ToList();
 
-            if(memberType.Equals("VVT"))
+            if (memberType.Equals("VVT"))
             {
                 custTdExisxt = (from ctde in cvdc.TrainingDiaries
-                                    where ctde.iCustomerId == memberId
-                                    where ctde.bFromVOS == true
-                                    where ctde.iWeekNumber == currentWeek
-                                    select ctde);
+                                where ctde.iCustomerId == memberId
+                                where ctde.bFromVOS == true
+                                where ctde.iWeekNumber == currentWeek
+                                select ctde);
 
                 if (!custTdExisxt.Any()) //just when it does not exist the disco starts!!
                 {
@@ -393,10 +397,10 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
                     GenerateWeeklyExercises(currentWeek, memberId, weekStartDay, startDay); //change the weekstart day
                 }
             }
-            
+
             cvdc.Dispose();
         }
-        
+
         public static void GenerateWeeklyExercises(int weekNumber, int memberId, int weekStartDay, DateTime startDay)
         {
             var cvdc = new ClubVisionDataContext();
@@ -470,7 +474,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             }
 
             cvdc.TrainingDiaries.InsertAllOnSubmit(ctdList);
-            
+
             cvdc.SubmitChanges();
             cvdc.Dispose();
         }
@@ -514,7 +518,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             int d1 = ((d4 - L) % 365) + L;
             return d1 / 7 + 1;
         }
-        
+
         public static string UpdateTrainingSummary(int currentWeek, int memberId, string membertype, DateTime startday, bool isForAPI)
         {
             string summarybuilder = "";
@@ -526,14 +530,14 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             int iWeightsReq = 0;
             decimal iHardCardioReq = 0; //this one has to be decimal
             int iTotcardioReq = 0;
-            
+
             ClubVisionDataContext cvdc = new ClubVisionDataContext();
 
 
             var ifWTSexists = (from wtscheck in cvdc.WeeklyTrainingSummaries
-                            where wtscheck.iCustomerID == memberId
-                            where wtscheck.iWeekNumber == currentWeek
-                            select wtscheck);
+                               where wtscheck.iCustomerID == memberId
+                               where wtscheck.iWeekNumber == currentWeek
+                               select wtscheck);
 
             WeeklyTrainingSummary wts = new WeeklyTrainingSummary();
             bool isNew = true;
@@ -581,7 +585,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
                         var custdet = (from cst in cvdc.Goals
                                        where cst.dDateCreated <= startday
                                        where cst.iCustomerID == memberId
-                                       orderby cst.dDateCreated descending, cst.iID 
+                                       orderby cst.dDateCreated descending, cst.iID
                                        select cst).FirstOrDefault();
 
                         iWeightsReq = 60;
@@ -596,9 +600,9 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
                         else
                         {
                             var custdet2 = (from cst in cvdc.Goals
-                                           where cst.iCustomerID == memberId
-                                           orderby cst.dDateCreated descending, cst.iID
-                                           select cst).FirstOrDefault();
+                                            where cst.iCustomerID == memberId
+                                            orderby cst.dDateCreated descending, cst.iID
+                                            select cst).FirstOrDefault();
 
                             iHardCardioReq = custdet2.iHardCardio; //this one has to be decimal
                             iTotcardioReq = isNew ? custdet2.iTotalCardio : wts.iTotCardioReq;
@@ -656,10 +660,10 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
 
             summarybuilder += " </table></div>";
 
-            summaryforapi = "?hardcardio=" + actualHardCar + "&totcardio=" + actualTotalCardio + "&lmcardio=" + (actualTotalCardio - actualHardCar) + 
+            summaryforapi = "?hardcardio=" + actualHardCar + "&totcardio=" + actualTotalCardio + "&lmcardio=" + (actualTotalCardio - actualHardCar) +
                             "&weights=" + actualWeights + "&bhardcardio=" + hardCarAch + "&btotcardio=" + totCarAch + "&bweights=" + weightAch +
                             "&totcardioreq=" + iTotcardioReq + "&allyes=" + allAchieved;
-            
+
             wts.iCustomerID = memberId;
             wts.iWeekNumber = currentWeek;
             wts.iActualHardCardio = actualHardCar;
@@ -683,7 +687,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             cvdc.Dispose();
 
             return isForAPI ? summaryforapi : summarybuilder;
-            
+
         }
 
         public static int CalculateActualTotalCardio(int wknow, int membernumber, string membertype, DateTime startday) //It needs to change
@@ -691,7 +695,7 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             var cvdc = new ClubVisionDataContext();
             IQueryable<TrainingDiary> totcarEntity;
 
-            if(membertype.Equals("VVT"))
+            if (membertype.Equals("VVT"))
             {
                 totcarEntity = (from trdiary in cvdc.TrainingDiaries
                                 join tenum in cvdc.EnumTables on trdiary.cExercise equals tenum.Value
@@ -704,14 +708,14 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             {
                 totcarEntity = (from trdiary in cvdc.TrainingDiaries
                                 join tenum in cvdc.EnumTables on trdiary.cExercise equals tenum.Value
-                                where trdiary.iCustomerId == membernumber 
+                                where trdiary.iCustomerId == membernumber
                                 where trdiary.When >= startday
                                 where trdiary.When < startday.AddDays(7)
-                                where trdiary.bCompleteState 
+                                where trdiary.bCompleteState
                                 where tenum.OptGroup.Equals("Cardio")//tenum.cField.Equals("1")
                                 select trdiary);
             }
-            
+
 
             int totCar = 0;
             foreach (TrainingDiary diary in totcarEntity)
@@ -729,13 +733,13 @@ namespace VisionPersonalTrainingProject.usercontrols.VVT
             if (membertype.Equals("VVT"))
             {
                 totcarEntity = (from trdiary in cvdc.TrainingDiaries
-                                    join tenum in cvdc.EnumTables on trdiary.cExercise equals tenum.Value
-                                    where trdiary.iCustomerId == membernumber &&
-                                          trdiary.iWeekNumber == wknow &&
-                                          trdiary.iIntensity == 2 &&
-                                          trdiary.bCompleteState == true //&& tenum.cField.Equals("1")
-                                          && tenum.OptGroup.Equals("Cardio")
-                                    select trdiary);
+                                join tenum in cvdc.EnumTables on trdiary.cExercise equals tenum.Value
+                                where trdiary.iCustomerId == membernumber &&
+                                      trdiary.iWeekNumber == wknow &&
+                                      trdiary.iIntensity == 2 &&
+                                      trdiary.bCompleteState == true //&& tenum.cField.Equals("1")
+                                      && tenum.OptGroup.Equals("Cardio")
+                                select trdiary);
             }
             else
             {
